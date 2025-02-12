@@ -2,24 +2,31 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    const toastId = toast.loading("Logging in...");
 
     try {
       const res = await login({ email, password }).unwrap();
       const user = verifyToken(res.data.accessToken);
-      console.log(user);
+      // Dispatch the user data to the store
       dispatch(setUser({ user: { user }, token: res.data.accessToken }));
+
+      toast.success("Logged in successfully!", { id: toastId, duration: 2000 });
+      navigate("/");
     } catch (err) {
+      toast.error("Login failed. Please try again.", { id: toastId });
       console.error("Login error:", err);
     }
   };
