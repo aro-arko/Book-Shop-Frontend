@@ -1,14 +1,14 @@
-import { useEffect } from "react";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 
 const Login = () => {
-  const [login, { data, error }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -16,29 +16,13 @@ const Login = () => {
 
     try {
       const res = await login({ email, password }).unwrap();
-
       const user = verifyToken(res.data.accessToken);
-
       console.log(user);
-
-      // Set the token in local storage
-      localStorage.setItem("token", res.data.accessToken);
-
-      // Dispatch the user data to the store
       dispatch(setUser({ user: { user }, token: res.data.accessToken }));
     } catch (err) {
       console.error("Login error:", err);
     }
   };
-
-  useEffect(() => {
-    if (data) {
-      console.log("Login response:", data.data);
-    }
-    if (error) {
-      console.error("Login error:", error);
-    }
-  }, [data, error]);
 
   return (
     <div className="hero bg-base-200 min-h-screen">
