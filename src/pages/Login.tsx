@@ -16,15 +16,20 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const toastId = toast.loading("Logging in...");
-
     try {
       const res = await login({ email, password }).unwrap();
-      const user = verifyToken(res.data.accessToken);
+      const loginUser = verifyToken(res.data.accessToken);
       // Dispatch the user data to the store
-      dispatch(setUser({ user: { user }, token: res.data.accessToken }));
+      dispatch(
+        setUser({ user: { user: loginUser }, token: res.data.accessToken })
+      );
 
       toast.success("Logged in successfully!", { id: toastId, duration: 2000 });
-      navigate("/");
+      if (loginUser?.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       toast.error("Login failed. Please try again.", { id: toastId });
       console.error("Login error:", err);

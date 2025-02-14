@@ -1,7 +1,9 @@
+import Navbar from "./Navbar";
+
 const AdminDashboard = () => {
   return (
     <div>
-      <h1>This is AdminDashboard component</h1>
+      <Navbar></Navbar>
     </div>
   );
 };
