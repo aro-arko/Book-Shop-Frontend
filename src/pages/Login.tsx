@@ -23,8 +23,7 @@ const Login = () => {
       dispatch(
         setUser({ user: { user: loginUser }, token: res.data.accessToken })
       );
-
-      toast.success("Logged in successfully!", { id: toastId, duration: 2000 });
+      toast.success("Login successful!", { id: toastId });
       if (loginUser?.role === "admin") {
         navigate("/admin/dashboard");
       } else {

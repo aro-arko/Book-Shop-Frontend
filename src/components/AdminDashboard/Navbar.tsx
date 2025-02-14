@@ -1,4 +1,11 @@
+import { useDispatch } from "react-redux";
+import { logOut } from "../../redux/features/auth/authSlice";
+
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
   return (
     <nav className="bg-base-100 shadow-sm">
       <div className=" navbar max-w-7xl mx-auto">
@@ -73,7 +80,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={handleLogout}>Logout</a>
               </li>
             </ul>
           </div>
