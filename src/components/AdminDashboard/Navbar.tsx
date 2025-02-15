@@ -7,8 +7,9 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logOut());
   };
+
   return (
-    <nav className="bg-base-100 shadow-sm">
+    <nav className="bg-base-100 shadow-sm w-full z-50 sticky top-0">
       <div className="navbar max-w-7xl mx-auto">
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl">
@@ -43,7 +44,7 @@ const Navbar = () => {
             </div>
             <div
               tabIndex={0}
-              className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+              className="card card-compact dropdown-content bg-base-100 z-10 mt-3 w-52 shadow"
             >
               <div className="card-body">
                 <span className="text-lg font-bold">8 Items</span>
@@ -73,7 +74,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
               <li>
                 <Link to="/admin/profile" className="justify-between">
@@ -82,7 +83,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to="/admin/change-password">Change Password</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>

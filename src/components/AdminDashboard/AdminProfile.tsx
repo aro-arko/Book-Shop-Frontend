@@ -15,13 +15,25 @@ const AdminProfile = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
         <h2 className="text-4xl font-semibold text-gray-800 text-center mb-8">
           Admin Profile
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Profile Image */}
+          <div className="flex justify-center md:justify-end items-center order-1 md:order-2">
+            <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden">
+              {/* Profile image if exists, else placeholder */}
+              <img
+                src={profileImg}
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
           {/* Profile Details */}
-          <div className="space-y-4">
+          <div className="space-y-4 order-2 md:order-1">
             <div className="flex items-center space-x-4">
               <span className="font-semibold text-gray-700 text-lg">Name:</span>
               <span className="text-gray-600 text-lg">{name || "N/A"}</span>
@@ -47,18 +59,6 @@ const AdminProfile = () => {
             <div className="flex items-center space-x-4">
               <span className="font-semibold text-gray-700 text-lg">City:</span>
               <span className="text-gray-600 text-lg">{city || "N/A"}</span>
-            </div>
-          </div>
-
-          {/* Profile Image */}
-          <div className="flex justify-center md:justify-end items-center">
-            <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden">
-              {/* Profile image if exists, else placeholder */}
-              <img
-                src={profileImg}
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
             </div>
           </div>
         </div>

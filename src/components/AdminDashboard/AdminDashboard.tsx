@@ -28,7 +28,9 @@ const AdminDashboard = () => {
   return (
     <div>
       <Navbar />
-      <Outlet />
+      <div className="min-h-screen bg-gray-100 py-10 px-4">
+        <Outlet />
+      </div>
     </div>
   );
 };
