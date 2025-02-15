@@ -3,6 +3,7 @@ import AdminProfile from "../components/AdminDashboard/AdminProfile";
 import ChangePassword from "../components/AdminDashboard/ChangePassword";
 import EditProfile from "../components/AdminDashboard/EditProfile";
 import AllProducts from "../components/AdminDashboard/Product/AllProducts";
+import CreateProduct from "../components/AdminDashboard/Product/CreateProduct";
 import ProductDetails from "../components/AdminDashboard/Product/ProductDetails";
 import UpdateProduct from "../components/AdminDashboard/Product/UpdateProduct";
 
@@ -34,5 +35,9 @@ export const adminRoutes = [
   {
     path: "products/update/:productId",
     element: <UpdateProduct />,
+  },
+  {
+    path: "products/create-product",
+    element: <CreateProduct />,
   },
 ];

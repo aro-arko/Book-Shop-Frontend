@@ -6,6 +6,8 @@ import { adminRoutes } from "./admin.routes";
 import ProtectedRoute from "../layouts/ProtectedRoute";
 import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
 import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
+import ForgotPassword from "../pages/Auth/ForgotPassword";
+import ResetPassword from "../pages/Auth/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
   },
   {
     path: "/register",

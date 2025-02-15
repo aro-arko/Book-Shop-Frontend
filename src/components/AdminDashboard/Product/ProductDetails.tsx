@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
@@ -67,7 +66,7 @@ const ProductDetails = () => {
               {product.title}
             </h1>
             <p className="text-gray-600 mb-4">Author: {product.author}</p>
-            <p className="text-gray-600 mb-4">Category: {product.category}</p>
+            <p className="text-gray-600 mb-4">Category: #{product.category}</p>
             <p className="text-gray-600 mb-4">{product.description}</p>
             <p className="text-gray-800 font-bold text-2xl mb-4">
               ${product.price}

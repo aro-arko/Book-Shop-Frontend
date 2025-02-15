@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import {
-  useGetProductByIdQuery,
-  useUpdateProductMutation,
-} from "../../../redux/features/product/productApi";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, Toaster } from "sonner";
+import { useCreateProductMutation } from "../../../redux/features/product/productApi";
 import { FaArrowLeft } from "react-icons/fa";
 
 const categories = [
@@ -15,15 +12,9 @@ const categories = [
   "Religious",
 ];
 
-const UpdateProduct = () => {
-  const { productId } = useParams();
-  const {
-    data: response,
-    isLoading,
-    error,
-    refetch,
-  } = useGetProductByIdQuery(productId as string);
-  const [updateProduct] = useUpdateProductMutation();
+const CreateProduct = () => {
+  const navigate = useNavigate();
+  const [createProduct] = useCreateProductMutation();
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -35,29 +26,12 @@ const UpdateProduct = () => {
     inStock: false,
   });
 
-  useEffect(() => {
-    if (response) {
-      const product = response.data;
-      setFormData({
-        title: product.title,
-        author: product.author,
-        price: product.price.toString(), // Convert price to string for input field
-        category: product.category,
-        description: product.description,
-        image: product.image,
-        quantity: product.quantity.toString(), // Convert quantity to string for input field
-        inStock: product.inStock,
-      });
-    }
-  }, [response]);
-
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
+    const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
@@ -66,51 +40,34 @@ const UpdateProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedFormData = {
+    const newProductData = {
       ...formData,
       price: Number(formData.price), // Convert price to number
       quantity: Number(formData.quantity), // Convert quantity to number
     };
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Do you want to update this product?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, update it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          await updateProduct({
-            id: productId as string,
-            product: updatedFormData,
-          }).unwrap();
-          refetch();
-          Swal.fire("Updated!", "Your product has been updated.", "success");
-        } catch (err) {
-          console.error("Failed to update the product:", err);
-          Swal.fire("Error!", "Failed to update the product.", "error");
-        }
-      }
-    });
+    try {
+      await createProduct(newProductData).unwrap();
+      toast.success("Product created successfully!");
+      navigate("/admin/products");
+    } catch (err) {
+      console.error("Failed to create the product:", err);
+      toast.error("Failed to create the product.");
+    }
   };
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading product details</p>;
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <Toaster />
       <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
         <div className="flex items-center mb-6">
-          <Link
-            to={`/admin/products/${productId}`}
+          <button
+            onClick={() => navigate(-1)}
             className="text-blue-600 hover:text-blue-800 transition duration-300"
           >
             <FaArrowLeft className="h-6 w-6" />
-          </Link>
+          </button>
           <h1 className="text-3xl font-semibold text-gray-800 ml-4">
-            Update Product
+            Create Product
           </h1>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -210,7 +167,7 @@ const UpdateProduct = () => {
               type="submit"
               className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
             >
-              Update Product
+              Create Product
             </button>
           </div>
         </form>
@@ -219,4 +176,4 @@ const UpdateProduct = () => {
   );
 };
 
-export default UpdateProduct;
+export default CreateProduct;

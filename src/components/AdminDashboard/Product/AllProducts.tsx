@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../../redux/features/product/productApi";
 import { TProduct } from "../../../types/product.type";
@@ -38,7 +38,7 @@ const AllProducts = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Link to="/admin/product/create">
+            <Link to="/admin/products/create-product">
               <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
                 Add New Product
               </button>
@@ -58,8 +58,8 @@ const AllProducts = () => {
                   {product.title}
                 </h2>
                 <p className="text-gray-600">{product.author}</p>
-                <p className="text-gray-600">{product.category}</p>
-                <p className="text-gray-600">{product.description}</p>
+                <p className="text-gray-600">#{product.category}</p>
+                <p className="text-gray-600 truncate">{product.description}</p>
                 <p className="text-gray-800 font-bold">${product.price}</p>
                 <p className="text-gray-600">Quantity: {product.quantity}</p>
                 <p

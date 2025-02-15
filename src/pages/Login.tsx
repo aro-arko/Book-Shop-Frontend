@@ -1,9 +1,11 @@
+import React from "react";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import loginImage from "../assets/images/login.png";
 
 const Login = () => {
   const [login] = useLoginMutation();
@@ -34,34 +36,61 @@ const Login = () => {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
+      <div className="hero-content flex-col lg:flex-row shadow-2xl rounded-lg overflow-hidden p-10">
+        <div className="hidden lg:block lg:w-1/3">
+          <img
+            src={loginImage}
+            alt="Login"
+            className="w-full h-auto object-cover"
+          />
+        </div>
+        <div className="card bg-base-100 w-full max-w-lg lg:w-2/3 p-8">
           <div className="card-body">
+            <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
             <form onSubmit={handleSubmit}>
-              <fieldset className="fieldset">
-                <label className="fieldset-label">Email</label>
-                <input
-                  type="email"
-                  className="input"
-                  placeholder="Email"
-                  name="email"
-                />
-                <label className="fieldset-label">Password</label>
-                <input
-                  type="password"
-                  className="input"
-                  placeholder="Password"
-                  name="password"
-                />
+              <fieldset className="fieldset space-y-4">
                 <div>
-                  <a className="link link-hover">Forgot password?</a>
+                  <label className="fieldset-label block mb-2">Email</label>
+                  <input
+                    type="email"
+                    className="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Email"
+                    name="email"
+                    required
+                  />
                 </div>
-                <button type="submit" className="btn btn-neutral mt-4">
+                <div>
+                  <label className="fieldset-label block mb-2">Password</label>
+                  <input
+                    type="password"
+                    className="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Password"
+                    name="password"
+                    required
+                  />
+                </div>
+                <div className="text-right">
+                  <Link
+                    to="/forgot-password"
+                    className="link link-hover text-blue-500"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+                <button type="submit" className="btn btn-neutral w-full mt-4">
                   Login
                 </button>
               </fieldset>
             </form>
+            <div className="text-center mt-4">
+              <p>
+                Don't have an account?{" "}
+                <Link to="/register" className="text-blue-500 hover:underline">
+                  Register
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>
