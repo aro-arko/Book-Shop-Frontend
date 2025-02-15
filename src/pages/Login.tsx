@@ -1,11 +1,10 @@
-import React from "react";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { toast } from "sonner";
 import { useNavigate, Link } from "react-router-dom";
-import loginImage from "../assets/images/login.png";
+import loginImage from "../assets/images/loginIllustration.png";
 
 const Login = () => {
   const [login] = useLoginMutation();

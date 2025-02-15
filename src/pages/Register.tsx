@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, Toaster } from "sonner";
 import { useRegisterMutation } from "../redux/features/auth/authApi";
-import registerImage from "../assets/images/login.png";
+import registerImage from "../assets/images/loginIllustration.png";
 
 const Register = () => {
   const [register] = useRegisterMutation();
