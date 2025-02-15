@@ -2,6 +2,8 @@ import AdminHome from "../components/AdminDashboard/AdminHome";
 import AdminProfile from "../components/AdminDashboard/AdminProfile";
 import ChangePassword from "../components/AdminDashboard/ChangePassword";
 import EditProfile from "../components/AdminDashboard/EditProfile";
+import AllOrders from "../components/AdminDashboard/Order/AllOrders";
+import OrderDetails from "../components/AdminDashboard/Order/OrderDetails";
 import AllProducts from "../components/AdminDashboard/Product/AllProducts";
 import CreateProduct from "../components/AdminDashboard/Product/CreateProduct";
 import ProductDetails from "../components/AdminDashboard/Product/ProductDetails";
@@ -39,5 +41,14 @@ export const adminRoutes = [
   {
     path: "products/create-product",
     element: <CreateProduct />,
+  },
+  // orders
+  {
+    path: "orders",
+    element: <AllOrders />,
+  },
+  {
+    path: "orders/:id",
+    element: <OrderDetails />,
   },
 ];

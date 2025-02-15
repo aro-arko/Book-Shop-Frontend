@@ -105,7 +105,7 @@ const UpdateProduct = () => {
         <div className="flex items-center mb-6">
           <Link
             to={`/admin/products/${productId}`}
-            className="text-blue-600 hover:text-blue-800 transition duration-300"
+            className="text-gray-800 hover:text-blue-800 transition duration-300"
           >
             <FaArrowLeft className="h-6 w-6" />
           </Link>

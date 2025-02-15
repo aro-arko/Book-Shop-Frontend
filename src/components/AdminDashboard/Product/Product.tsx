@@ -1,12 +1,11 @@
-import React from "react";
-import productLogo from "../../../assets/images/product.png"; // Adjust the path to your logo image
+import productLogo from "../../../assets/images/product.jpg"; // Adjust the path to your logo image
 import { Link } from "react-router-dom";
 
 const Product = () => {
   return (
     <>
-      <Link to="/admin/products">
-        <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <div className="bg-gray-100 py-10 px-4">
+        <Link to="/admin/products">
           <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-8 flex flex-col items-center">
             <img
               src={productLogo}
@@ -17,8 +16,8 @@ const Product = () => {
               Product Management
             </h1>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </>
   );
 };
