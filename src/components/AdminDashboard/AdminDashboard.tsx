@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { logOut, selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import Navbar from "./Navbar";
@@ -12,7 +12,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const checkUserRole = async () => {
-      if (currentUser?.user?.role !== "admin") {
+      if (currentUser?.role !== "admin") {
         await dispatch(logOut());
         setRedirect(true);
       }
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   return (
     <div>
       <Navbar />
-      <h1>Welcome to the Admin Dashboard</h1>
+      <Outlet />
     </div>
   );
 };

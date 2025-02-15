@@ -1,14 +1,14 @@
 import { jwtDecode } from "jwt-decode";
-interface CustomJwtPayload {
+export interface TUser {
   email: string;
   role: string;
   iat: number;
   exp: number;
 }
 
-export const verifyToken = (token: string): CustomJwtPayload | null => {
+export const verifyToken = (token: string): TUser | null => {
   try {
-    const decodedToken = jwtDecode<CustomJwtPayload>(token);
+    const decodedToken = jwtDecode<TUser>(token);
     return decodedToken;
   } catch (error) {
     console.error("Invalid token", error);

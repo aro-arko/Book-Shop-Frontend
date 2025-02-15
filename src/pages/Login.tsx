@@ -20,12 +20,10 @@ const Login = () => {
       const res = await login({ email, password }).unwrap();
       const loginUser = verifyToken(res.data.accessToken);
       // Dispatch the user data to the store
-      dispatch(
-        setUser({ user: { user: loginUser }, token: res.data.accessToken })
-      );
+      dispatch(setUser({ user: loginUser, token: res.data.accessToken }));
       toast.success("Login successful!", { id: toastId });
       if (loginUser?.role === "admin") {
-        navigate("/admin/dashboard");
+        navigate("/admin");
       } else {
         navigate("/");
       }

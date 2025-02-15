@@ -1,8 +1,13 @@
-import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
+import AdminProfile from "../components/AdminDashboard/AdminProfile";
+import EditProfile from "../components/AdminDashboard/EditProfile";
 
 export const adminRoutes = [
   {
-    path: "dashboard",
-    element: <AdminDashboard />,
+    path: "profile",
+    element: <AdminProfile />,
+  },
+  {
+    path: "profile/edit",
+    element: <EditProfile />,
   },
 ];
