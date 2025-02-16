@@ -14,7 +14,32 @@ const orderApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    createOrder: builder.mutation({
+      query: (orderData) => ({
+        url: "/order",
+        method: "POST",
+        body: orderData,
+      }),
+    }),
+    ownOrders: builder.query({
+      query: () => ({
+        url: "/order",
+        method: "GET",
+      }),
+    }),
+    verifyPayment: builder.query({
+      query: (order_id: string) => ({
+        url: `/order/verify?order_id=${order_id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllOrdersQuery, useGetOrderByIdQuery } = orderApi;
+export const {
+  useGetAllOrdersQuery,
+  useGetOrderByIdQuery,
+  useCreateOrderMutation,
+  useOwnOrdersQuery,
+  useVerifyPaymentQuery,
+} = orderApi;

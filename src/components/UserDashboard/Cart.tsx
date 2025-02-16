@@ -110,7 +110,7 @@ const Cart = () => {
                   </p>
                   <button
                     onClick={() => handleRemoveFromCart(item.product._id)}
-                    className="text-red-500 hover:text-red-600 transition"
+                    className="text-red-500 hover:text-red-600 transition cursor-pointer"
                   >
                     <FaTrash size={20} />
                   </button>

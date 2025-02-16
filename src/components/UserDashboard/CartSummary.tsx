@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface CartItem {
   product: {
     price: number;
@@ -14,6 +16,7 @@ const CartSummary = ({ cart }: { cart: Cart }) => {
     (total, item) => total + item.product.price * item.quantity,
     0
   );
+  console.log(cart);
 
   return (
     <div className="flex justify-end items-center mt-6">
@@ -28,9 +31,11 @@ const CartSummary = ({ cart }: { cart: Cart }) => {
           Thank you for shopping with us! Click the button below to place your
           order and enjoy your new books.
         </p>
-        <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
-          Order Now
-        </button>
+        <Link to="/user/checkout" state={{ cart }}>
+          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+            Proceed to Checkout
+          </button>
+        </Link>
       </div>
     </div>
   );

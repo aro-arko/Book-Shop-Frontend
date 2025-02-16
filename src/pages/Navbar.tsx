@@ -109,6 +109,9 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/user/orders">Orders</Link>
+                </li>
+                <li>
                   <Link to="/user/change-password">Change Password</Link>
                 </li>
                 <li>

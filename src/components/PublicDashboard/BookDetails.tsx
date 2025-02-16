@@ -37,6 +37,32 @@ const BookDetails = () => {
     }
   };
 
+  const handleBuyNow = async () => {
+    if (!isLoggedIn) {
+      navigate("/login", { state: { from: location } });
+    } else {
+      // Create a cart-like structure for the "Buy Now" flow
+      const orderDetails = {
+        items: [
+          {
+            product: {
+              _id: product._id,
+              image: product.image,
+              title: product.title,
+              author: product.author,
+              price: product.price,
+            },
+            quantity: 1,
+          },
+        ],
+        totalPrice: product.price, // Since quantity is 1, totalPrice is the product price
+      };
+
+      // Navigate to the checkout page with the orderDetails as cart
+      navigate("/user/checkout", { state: { cart: orderDetails } });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
       <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
@@ -64,12 +90,20 @@ const BookDetails = () => {
             >
               {product.inStock ? "In Stock" : "Out of Stock"}
             </p>
-            <button
-              onClick={handleAddToCart}
-              className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 cursor-pointer"
-            >
-              Add to Cart
-            </button>
+            <div className="flex space-x-4">
+              <button
+                onClick={handleAddToCart}
+                className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 cursor-pointer"
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={handleBuyNow}
+                className="mt-6 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer"
+              >
+                Buy Now
+              </button>
+            </div>
           </div>
         </div>
       </div>
