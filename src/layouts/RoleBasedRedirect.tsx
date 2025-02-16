@@ -1,4 +1,3 @@
-import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { selectCurrentUser } from "../redux/features/auth/authSlice";
@@ -8,6 +7,8 @@ const RoleBasedRedirect = () => {
 
   if (currentUser?.role === "admin") {
     return <Navigate to="/admin" />;
+  } else {
+    return <Navigate to="/home" />;
   }
 
   return <Outlet />;

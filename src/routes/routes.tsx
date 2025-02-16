@@ -5,9 +5,10 @@ import Register from "../pages/Register";
 import { adminRoutes } from "./admin.routes";
 import ProtectedRoute from "../layouts/ProtectedRoute";
 import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
-import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
+import Home from "../pages/Home";
+import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <RoleBasedRedirect />,
+        element: <RoleBasedRedirect />, // Render Home component for the root path
+      },
+      {
+        path: "home",
+        element: <Home />, // Render Home component for /home path
       },
       {
         path: "login",
