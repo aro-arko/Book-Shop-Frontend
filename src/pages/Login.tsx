@@ -3,13 +3,16 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { toast } from "sonner";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import loginImage from "../assets/images/loginIllustration.png";
 
 const Login = () => {
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (e: any) => {
@@ -23,11 +26,7 @@ const Login = () => {
       // Dispatch the user data to the store
       dispatch(setUser({ user: loginUser, token: res.data.accessToken }));
       toast.success("Login successful!", { id: toastId });
-      if (loginUser?.role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
+      navigate(from, { replace: true });
     } catch (err) {
       toast.error("Login failed. Please try again.", { id: toastId });
       console.error("Login error:", err);

@@ -11,6 +11,7 @@ import Home from "../pages/Home";
 import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
 import Books from "../components/PublicDashboard/Books";
 import BookDetails from "../components/PublicDashboard/BookDetails";
+import Cart from "../components/UserDashboard/Cart";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "books/:productId",
         element: <BookDetails />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "login",

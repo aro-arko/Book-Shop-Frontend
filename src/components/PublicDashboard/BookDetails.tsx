@@ -1,20 +1,41 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useGetProductByIdQuery } from "../../redux/features/product/productApi";
+import { useAddToCartMutation } from "../../redux/features/cart/cartApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
+import { RootState } from "../../redux/store";
+import { toast } from "sonner";
 
 const BookDetails = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     data: response,
     isLoading,
     error,
   } = useGetProductByIdQuery(productId as string);
+  const isLoggedIn = useSelector((state: RootState) => state.auth.user);
+  const [addToCart] = useAddToCartMutation();
 
-  console.log(productId);
   if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading product details</p>;
 
   const product = response.data;
+
+  const handleAddToCart = async () => {
+    if (!isLoggedIn) {
+      navigate("/login", { state: { from: location } });
+    } else {
+      try {
+        await addToCart({ productId: product._id, quantity: 1 }).unwrap();
+        toast.success("Product added to cart!");
+      } catch (err) {
+        console.error("Failed to add product to cart:", err);
+        toast.error("Failed to add product to cart.");
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
@@ -43,6 +64,12 @@ const BookDetails = () => {
             >
               {product.inStock ? "In Stock" : "Out of Stock"}
             </p>
+            <button
+              onClick={handleAddToCart}
+              className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 cursor-pointer"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
