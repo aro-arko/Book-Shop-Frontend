@@ -35,7 +35,7 @@ const Footer = () => {
         >
           {/* Company Info */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-white">BookStore</h2>
+            <h2 className="text-3xl font-bold text-white">BookShop</h2>
             <p className="text-gray-400">
               Your one-stop destination for the best books. Discover, learn, and
               grow with us.
@@ -102,7 +102,7 @@ const Footer = () => {
           <div className="space-y-2">
             <h3 className="text-xl font-semibold text-white">Contact Us</h3>
             {[
-              { text: "Email: support@bookstore.com" },
+              { text: "Email: support@bookshop.com" },
               { text: "Phone: +123 456 7890" },
               { text: "Address: 123 Book Street, Knowledge City" },
             ].map((info, index) => (
@@ -147,7 +147,7 @@ const Footer = () => {
           className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500"
           {...fadeIn}
         >
-          © {new Date().getFullYear()} BookStore. All rights reserved.
+          © {new Date().getFullYear()} BookShop. All rights reserved.
         </motion.div>
       </div>
     </footer>

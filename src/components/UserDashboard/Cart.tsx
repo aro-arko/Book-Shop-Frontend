@@ -71,10 +71,10 @@ const Cart = () => {
             }) => (
               <div
                 key={item.product._id}
-                className="bg-white shadow-md rounded-lg p-4 border border-gray-300 hover:shadow-lg transition duration-300 flex items-center justify-between"
+                className="bg-white shadow-md rounded-lg p-4 border border-gray-300 hover:shadow-lg transition duration-300 flex flex-col md:flex-row items-center justify-between"
               >
                 {/* Left: Image, Title, and Author */}
-                <div className="flex items-center space-x-4 flex-1">
+                <div className="flex items-center space-x-4 flex-1 mb-4 md:mb-0">
                   <img
                     className="w-16 h-16 object-cover rounded-md"
                     src={item.product.image}
@@ -91,7 +91,7 @@ const Cart = () => {
                 </div>
 
                 {/* Middle: Quantity Input */}
-                <div className="flex items-center mx-4">
+                <div className="flex items-center mx-4 mb-4 md:mb-0">
                   <input
                     type="number"
                     value={item.quantity}
