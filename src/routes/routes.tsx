@@ -12,11 +12,27 @@ import ResetPassword from "../pages/Auth/ResetPassword";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RoleBasedRedirect />,
+    element: <App />, // Use App as the root element
     children: [
       {
         index: true,
-        element: <App />,
+        element: <RoleBasedRedirect />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "reset-password",
+        element: <ResetPassword />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
@@ -28,22 +44,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: adminRoutes, // This includes the index route
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/forgot-password",
-    element: <ForgotPassword />,
-  },
-  {
-    path: "/reset-password",
-    element: <ResetPassword />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
   },
 ]);
 
