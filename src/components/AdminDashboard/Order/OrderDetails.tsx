@@ -13,7 +13,7 @@ interface Product {
 
 const OrderDetails = () => {
   const { id } = useParams<{ id: string }>();
-  console.log("Order ID from params:", id); // Log the order ID to ensure it's being passed correctly
+  // console.log("Order ID from params:", id); // Log the order ID to ensure it's being passed correctly
 
   const { data, isLoading, error } = useGetOrderByIdQuery(id);
 
@@ -24,7 +24,7 @@ const OrderDetails = () => {
   }
 
   const order = data?.data;
-  console.log(order);
+  // console.log(order);
 
   if (!order) return <p>No order details available</p>;
 

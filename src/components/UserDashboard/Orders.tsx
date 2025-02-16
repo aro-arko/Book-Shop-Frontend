@@ -16,7 +16,7 @@ const Orders = () => {
   }, [refetch]);
 
   const ordersData = data?.data;
-  console.log(ordersData);
+  // console.log(ordersData);
   if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading orders</p>;
 

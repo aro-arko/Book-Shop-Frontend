@@ -13,7 +13,7 @@ const MakeOrder = () => {
   const [updateUser, { isLoading, error }] = useUpdateUserMutation();
   const location = useLocation();
   const cart = location.state?.cart;
-  console.log(cart);
+  // console.log(cart);
 
   const [email, setEmail] = useState("");
   const [userData, setUserData] = useState({

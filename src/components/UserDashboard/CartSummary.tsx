@@ -16,7 +16,7 @@ const CartSummary = ({ cart }: { cart: Cart }) => {
     (total, item) => total + item.product.price * item.quantity,
     0
   );
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div className="flex justify-center md:justify-end items-center mt-6">
