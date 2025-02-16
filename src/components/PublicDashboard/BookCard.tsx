@@ -29,6 +29,9 @@ const BookCard: React.FC<BookCardProps> = ({
       <p className="text-gray-600">#{category}</p>
       <p className="text-gray-600 truncate">{description}</p>
       <p className="text-gray-800 font-bold">${price}</p>
+      <button className=" mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+        View Details
+      </button>
     </div>
   );
 };
