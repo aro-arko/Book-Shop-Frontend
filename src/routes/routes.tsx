@@ -9,19 +9,24 @@ import ForgotPassword from "../pages/Auth/ForgotPassword";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import Home from "../pages/Home";
 import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
+import Books from "../components/PublicDashboard/Books";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // Use App as the root element
+    element: <App />,
     children: [
       {
         index: true,
-        element: <RoleBasedRedirect />, // Render Home component for the root path
+        element: <RoleBasedRedirect />,
       },
       {
         path: "home",
-        element: <Home />, // Render Home component for /home path
+        element: <Home />,
+      },
+      {
+        path: "books",
+        element: <Books />,
       },
       {
         path: "login",

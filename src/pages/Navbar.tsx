@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FaUserCircle, FaBars, FaShoppingCart } from "react-icons/fa";
 import { logOut } from "../redux/features/auth/authSlice";
 import { useState } from "react";
@@ -24,18 +24,38 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex space-x-4 justify-center flex-1">
-          <Link to="/home" className="btn btn-ghost">
+          <NavLink
+            to="/home"
+            className={({ isActive }) =>
+              isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+            }
+          >
             Home
-          </Link>
-          <Link to="/books" className="btn btn-ghost">
+          </NavLink>
+          <NavLink
+            to="/books"
+            className={({ isActive }) =>
+              isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+            }
+          >
             Books
-          </Link>
-          <Link to="/about" className="btn btn-ghost">
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+            }
+          >
             About
-          </Link>
-          <Link to="/contact" className="btn btn-ghost">
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+            }
+          >
             Contact
-          </Link>
+          </NavLink>
         </div>
         <div className="flex items-center space-x-4">
           {user && (
@@ -119,34 +139,42 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-base-100 shadow-sm w-full z-50">
           <div className="flex flex-col space-y-2 p-4">
-            <Link
-              to="/"
-              className="btn btn-ghost"
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+              }
               onClick={() => setIsMenuOpen(false)}
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/books"
-              className="btn btn-ghost"
+              className={({ isActive }) =>
+                isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+              }
               onClick={() => setIsMenuOpen(false)}
             >
               Books
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/about"
-              className="btn btn-ghost"
+              className={({ isActive }) =>
+                isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+              }
               onClick={() => setIsMenuOpen(false)}
             >
               About
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/contact"
-              className="btn btn-ghost"
+              className={({ isActive }) =>
+                isActive ? "btn btn-ghost text-blue-500" : "btn btn-ghost "
+              }
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
-            </Link>
+            </NavLink>
             {!user && (
               <Link
                 to="/login"
