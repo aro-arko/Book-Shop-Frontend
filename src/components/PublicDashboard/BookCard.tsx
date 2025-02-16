@@ -1,22 +1,8 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { TProduct } from "../../types/product.type";
 
-interface BookCardProps {
-  image: string;
-  title: string;
-  author: string;
-  category: string;
-  description: string;
-  price: string;
-}
-
-const BookCard: React.FC<BookCardProps> = ({
-  image,
-  title,
-  author,
-  category,
-  description,
-  price,
-}) => {
+const BookCard = ({ product }: { product: TProduct }) => {
+  const { _id, image, title, author, category, description, price } = product;
   return (
     <div className="bg-white shadow-md rounded-lg p-4 border border-gray-300 hover:shadow-lg transition duration-300">
       <img
@@ -29,9 +15,11 @@ const BookCard: React.FC<BookCardProps> = ({
       <p className="text-gray-600">#{category}</p>
       <p className="text-gray-600 truncate">{description}</p>
       <p className="text-gray-800 font-bold">${price}</p>
-      <button className=" mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-        View Details
-      </button>
+      <Link to={`/books/${_id}`}>
+        <button className=" mt-3 cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+          View Details
+        </button>
+      </Link>
     </div>
   );
 };

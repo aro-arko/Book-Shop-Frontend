@@ -10,6 +10,7 @@ import ResetPassword from "../pages/Auth/ResetPassword";
 import Home from "../pages/Home";
 import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
 import Books from "../components/PublicDashboard/Books";
+import BookDetails from "../components/PublicDashboard/BookDetails";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "books",
         element: <Books />,
+      },
+      {
+        path: "books/:productId",
+        element: <BookDetails />,
       },
       {
         path: "login",
