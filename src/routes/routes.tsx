@@ -13,6 +13,9 @@ import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
 import Books from "../components/PublicDashboard/Books";
 import BookDetails from "../components/PublicDashboard/BookDetails";
 import Navbar from "../pages/Navbar";
+import Footer from "../components/PublicDashboard/Footer";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: "books/:productId",
         element: <BookDetails />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
       {
         path: "login",
@@ -68,6 +79,7 @@ const router = createBrowserRouter([
       <ProtectedRoute>
         <Navbar />
         <Outlet />
+        <Footer></Footer>
       </ProtectedRoute>
     ),
     children: userRoutes, // This includes the user routes

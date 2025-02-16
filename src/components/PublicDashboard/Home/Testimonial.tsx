@@ -23,7 +23,7 @@ const testimonials = [
 
 const Testimonial = () => {
   return (
-    <div className="bg-gray-50 py-16 px-6">
+    <div className="py-16 px-6">
       <h2 className="text-3xl font-semibold text-center text-gray-800 mb-10">
         What Our Customers Say
       </h2>

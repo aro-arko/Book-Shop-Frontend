@@ -51,12 +51,7 @@ const Orders = () => {
                 Transaction Id:{" "}
                 <span className="font-bold">{order.transaction.id}</span>
               </p>
-              <p className=" mb-2">
-                Transaction Status:{" "}
-                <span className="font-bold">
-                  {order.transaction.transactionStatus}
-                </span>
-              </p>
+
               <div className="space-y-4 mt-4">
                 {order.products.map((item: any) => (
                   <OrderedProductDetails
