@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useOwnOrdersQuery } from "../../redux/features/order/orderApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import OrderedProductDetails from "./OrderedProductDetails";
@@ -17,7 +18,7 @@ const Orders = () => {
         <p className="">You have no orders</p>
       ) : (
         <div className="space-y-6">
-          {ordersData?.map((order) => (
+          {ordersData?.map((order: any) => (
             <div
               key={order._id}
               className="bg-white shadow-md rounded-lg p-4 border border-gray-300 hover:shadow-lg transition duration-300"
@@ -48,7 +49,7 @@ const Orders = () => {
                 </span>
               </p>
               <div className="space-y-4 mt-4">
-                {order.products.map((item) => (
+                {order.products.map((item: any) => (
                   <OrderedProductDetails
                     key={item.product}
                     product={item}
