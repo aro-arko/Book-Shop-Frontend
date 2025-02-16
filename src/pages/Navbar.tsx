@@ -2,9 +2,10 @@ import { useDispatch } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { FaUserCircle, FaBars, FaShoppingCart } from "react-icons/fa";
 import { logOut } from "../redux/features/auth/authSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RootState } from "../redux/store"; // Adjust the import path as needed
 import { useAppSelector } from "../redux/hooks";
+import { useGetCartQuery } from "../redux/features/cart/cartApi";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,19 @@ const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useAppSelector((state: RootState) => state.auth.user);
+  let cartItems = [];
+
+  const { data, refetch } = useGetCartQuery(undefined);
+
+  useEffect(() => {
+    if (user) {
+      refetch();
+    }
+  }, [user, refetch]);
+
+  if (user) {
+    cartItems = data?.data?.items || [];
+  }
 
   return (
     <nav className="bg-base-100 shadow-sm w-full z-50 sticky top-0">
@@ -59,7 +73,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4">
           {user && (
-            <Link to="/cart">
+            <Link to="/user/cart">
               <div
                 tabIndex={0}
                 role="button"
@@ -67,9 +81,8 @@ const Navbar = () => {
               >
                 <div className="indicator">
                   <FaShoppingCart className="text-2xl" />
-
                   <span className="badge badge-sm bg-gray-200 indicator-item">
-                    8
+                    {cartItems.length}
                   </span>
                 </div>
               </div>
@@ -91,12 +104,12 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
               >
                 <li>
-                  <Link to="/profile" className="justify-between">
+                  <Link to="/user/profile" className="justify-between">
                     Profile
                   </Link>
                 </li>
                 <li>
-                  <Link to="/admin/change-password">Change Password</Link>
+                  <Link to="/user/change-password">Change Password</Link>
                 </li>
                 <li>
                   <a onClick={handleLogout}>Logout</a>
