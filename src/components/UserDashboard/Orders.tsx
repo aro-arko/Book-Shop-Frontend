@@ -1,10 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import { useOwnOrdersQuery } from "../../redux/features/order/orderApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import OrderedProductDetails from "./OrderedProductDetails";
 
 const Orders = () => {
-  const { data, isLoading, error } = useOwnOrdersQuery(undefined);
+  const { data, isLoading, error, refetch } = useOwnOrdersQuery(undefined);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   const ordersData = data?.data;
   console.log(ordersData);
