@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../../redux/features/product/productApi";
 import { TProduct } from "../../../types/product.type";
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 const AllProducts = () => {
   const {
@@ -22,7 +23,7 @@ const AllProducts = () => {
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading products</p>;
 
   return (
@@ -39,7 +40,7 @@ const AllProducts = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Link to="/admin/products/create-product">
-              <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+              <button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
                 Add New Product
               </button>
             </Link>

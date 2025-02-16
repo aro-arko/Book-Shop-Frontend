@@ -3,6 +3,7 @@ import { useGetOrderByIdQuery } from "../../../redux/features/order/orderApi";
 import UserDetails from "../User/UserDetails"; // Import UserDetails
 import OrderProducts from "./OrderProducts"; // Import OrderProducts
 import { FaArrowLeft } from "react-icons/fa"; // Import Font Awesome arrow icon
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 interface Product {
   _id: string;
@@ -16,7 +17,7 @@ const OrderDetails = () => {
 
   const { data, isLoading, error } = useGetOrderByIdQuery(id);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) {
     console.error("Error fetching order details:", error); // Log the error for debugging
     return <p>Error loading order details</p>;

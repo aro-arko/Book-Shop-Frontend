@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useGetAllOrdersQuery } from "../../../redux/features/order/orderApi";
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 interface Order {
   _id: string;
@@ -12,7 +13,7 @@ interface Order {
 const AllOrders = () => {
   const { data, isLoading, error } = useGetAllOrdersQuery(undefined);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading orders</p>;
 
   const orders = data?.data || [];
@@ -61,31 +62,34 @@ const AllOrders = () => {
                     index % 2 !== 0 ? "bg-gray-200" : "bg-white"
                   } hover:bg-gray-300 transition-colors`}
                 >
-                  <Link to={`/admin/orders/${order._id}`} className="contents">
-                    <td className="py-4 px-6 border-b border-gray-300">
+                  <td className="py-4 px-6 border-b border-gray-300">
+                    <Link
+                      to={`/admin/orders/${order._id}`}
+                      className="text-blue-600 hover:underline"
+                    >
                       {order._id}
-                    </td>
-                    <td className="py-4 px-6 border-b border-gray-300">
-                      {order.user}
-                    </td>
-                    <td className="py-4 px-6 border-b border-gray-300">
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="py-4 px-6 border-b border-gray-300">
-                      ${order.totalPrice.toFixed(2)}
-                    </td>
-                    <td className="py-4 px-6 border-b border-gray-300">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                          order.status === "Paid"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
-                        }`}
-                      >
-                        {order.status}
-                      </span>
-                    </td>
-                  </Link>
+                    </Link>
+                  </td>
+                  <td className="py-4 px-6 border-b border-gray-300">
+                    {order.user}
+                  </td>
+                  <td className="py-4 px-6 border-b border-gray-300">
+                    {new Date(order.createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="py-4 px-6 border-b border-gray-300">
+                    ${order.totalPrice.toFixed(2)}
+                  </td>
+                  <td className="py-4 px-6 border-b border-gray-300">
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                        order.status === "Paid"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>

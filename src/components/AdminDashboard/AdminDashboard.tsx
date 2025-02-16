@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { logOut, selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import Navbar from "./Navbar";
+import LoadingSpinner from "../Loading/LoadingSpinner";
 
 const AdminDashboard = () => {
   const currentUser = useAppSelector(selectCurrentUser);
@@ -22,7 +23,7 @@ const AdminDashboard = () => {
     checkUserRole();
   }, [currentUser, dispatch]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (redirect) return <Navigate to="/" />;
 
   return (

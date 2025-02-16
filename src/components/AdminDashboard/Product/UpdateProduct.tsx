@@ -6,6 +6,7 @@ import {
   useUpdateProductMutation,
 } from "../../../redux/features/product/productApi";
 import { FaArrowLeft } from "react-icons/fa";
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 const categories = [
   "Fiction",
@@ -96,7 +97,7 @@ const UpdateProduct = () => {
     });
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading product details</p>;
 
   return (
@@ -208,7 +209,7 @@ const UpdateProduct = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
             >
               Update Product
             </button>

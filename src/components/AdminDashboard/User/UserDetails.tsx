@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetUserByIdQuery } from "../../../redux/features/user/userApi";
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 interface UserDetailsProps {
   userId: string;
@@ -8,7 +9,7 @@ interface UserDetailsProps {
 const UserDetails: React.FC<UserDetailsProps> = ({ userId }) => {
   const { data, isLoading, error } = useGetUserByIdQuery(userId);
 
-  if (isLoading) return <p>Loading user details...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading user details</p>;
 
   const user = data?.data;

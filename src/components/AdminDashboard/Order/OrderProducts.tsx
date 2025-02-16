@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetProductByIdQuery } from "../../../redux/features/product/productApi";
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 interface OrderProductProps {
   productId: string;
@@ -12,7 +13,7 @@ const OrderProducts: React.FC<OrderProductProps> = ({
 }) => {
   const { data, isLoading, error } = useGetProductByIdQuery(productId);
 
-  if (isLoading) return <p>Loading product details...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading product details</p>;
 
   const product = data?.data;

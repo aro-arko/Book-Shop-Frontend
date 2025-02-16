@@ -19,7 +19,8 @@ const ForgotPassword = () => {
         "Reset link sent successfully! Please check your email."
       );
     } catch (err) {
-      toast.error("Failed to send reset link. Please try again.", {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      toast.error(`${(err as any)?.data?.message || "An error occurred"}`, {
         id: toastId,
       });
       console.error("Forgot password error:", err);

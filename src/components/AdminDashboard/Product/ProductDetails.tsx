@@ -4,6 +4,7 @@ import {
   useDeleteProductMutation,
   useGetProductByIdQuery,
 } from "../../../redux/features/product/productApi";
+import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -16,7 +17,7 @@ const ProductDetails = () => {
   } = useGetProductByIdQuery(productId as string);
   const [deleteProduct] = useDeleteProductMutation();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading product details</p>;
 
   const product = response.data;
@@ -83,7 +84,7 @@ const ProductDetails = () => {
               <Link to={`/admin/products/update/${product._id}`}>
                 <button
                   onClick={handleUpdate}
-                  className="mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+                  className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
                 >
                   Edit Product
                 </button>
