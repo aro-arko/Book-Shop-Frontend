@@ -3,7 +3,7 @@ import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { adminRoutes } from "./admin.routes";
-import { userRoutes } from "./user.routes"; // Import userRoutes
+import { userRoutes } from "./user.routes";
 import ProtectedRoute from "../layouts/ProtectedRoute";
 import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
@@ -12,8 +12,6 @@ import Home from "../pages/Home";
 import RoleBasedRedirect from "../layouts/RoleBasedRedirect";
 import Books from "../components/PublicDashboard/Books";
 import BookDetails from "../components/PublicDashboard/BookDetails";
-import Navbar from "../pages/Navbar";
-import Footer from "../components/PublicDashboard/Footer";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
@@ -73,18 +71,16 @@ const router = createBrowserRouter([
         <AdminDashboard />
       </ProtectedRoute>
     ),
-    children: adminRoutes, // This includes the index route
+    children: adminRoutes, 
   },
   {
     path: "/user",
     element: (
       <ProtectedRoute>
-        <Navbar />
         <Outlet />
-        <Footer></Footer>
       </ProtectedRoute>
     ),
-    children: userRoutes, // This includes the user routes
+    children: userRoutes,
   },
 ]);
 
