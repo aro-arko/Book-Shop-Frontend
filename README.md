@@ -35,8 +35,8 @@ To get started with this project, follow these steps:
 
 
 ## Project Structure
-`The project structure is organized as follows:
-bookshop-frontend/
+The project structure is organized as follows:
+```bookshop-frontend/
 ├── public/                     # Public assets
 ├── src/                        # Source files
 │   ├── assets/                 # Static assets (images, fonts, etc.)
@@ -50,9 +50,10 @@ bookshop-frontend/
 │   ├── main.tsx                # Entry point for the application
 │   └── index.css               # Global styles
 ├── .eslintrc.js                # ESLint configuration
-├── tsconfig.json               # TypeScript configuration
-├── vite.config.ts              # Vite configuration
-└── package.json                # Project metadata and dependencies`
+├── [tsconfig.json](http://_vscodecontentref_/2)               # TypeScript configuration
+├── [vite.config.ts](http://_vscodecontentref_/3)              # Vite configuration
+└── [package.json](http://_vscodecontentref_/4)                # Project metadata and dependencies
+```
 
 ## Available Scripts
 In the project directory, you can run the following scripts:
