@@ -1,6 +1,8 @@
 # Book-Shop-Frontend
 
 This project is a frontend application for a bookshop, built using React, TypeScript, and Vite.
+To check the backend repository, visit: [https://github.com/aro-arko/Book-Shop-Server](https://github.com/aro-arko/Book-Shop-Server).
+
 
 ## Table of Contents
 
@@ -33,7 +35,7 @@ To get started with this project, follow these steps:
 
 
 ## Project Structure
-The project structure is organized as follows:
+`The project structure is organized as follows:
 bookshop-frontend/
 ├── public/                     # Public assets
 ├── src/                        # Source files
@@ -50,7 +52,7 @@ bookshop-frontend/
 ├── .eslintrc.js                # ESLint configuration
 ├── tsconfig.json               # TypeScript configuration
 ├── vite.config.ts              # Vite configuration
-└── package.json                # Project metadata and dependencies
+└── package.json                # Project metadata and dependencies`
 
 ## Available Scripts
 In the project directory, you can run the following scripts:
