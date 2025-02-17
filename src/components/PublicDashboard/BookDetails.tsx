@@ -26,6 +26,8 @@ const BookDetails = () => {
   const handleAddToCart = async () => {
     if (!isLoggedIn) {
       navigate("/login", { state: { from: location } });
+    } else if (product.quantity === 0 || !product.inStock) {
+      toast.error("Product is not available.");
     } else {
       try {
         await addToCart({ productId: product._id, quantity: 1 }).unwrap();
@@ -40,6 +42,8 @@ const BookDetails = () => {
   const handleBuyNow = async () => {
     if (!isLoggedIn) {
       navigate("/login", { state: { from: location } });
+    } else if (product.quantity === 0 || !product.inStock) {
+      toast.error("Product is not available.");
     } else {
       // Create a cart-like structure for the "Buy Now" flow
       const orderDetails = {
