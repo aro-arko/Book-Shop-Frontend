@@ -50,9 +50,9 @@ The project structure is organized as follows:
 │   ├── main.tsx                # Entry point for the application
 │   └── index.css               # Global styles
 ├── .eslintrc.js                # ESLint configuration
-├── [tsconfig.json](http://_vscodecontentref_/2)               # TypeScript configuration
-├── [vite.config.ts](http://_vscodecontentref_/3)              # Vite configuration
-└── [package.json](http://_vscodecontentref_/4)                # Project metadata and dependencies
+├── tsconfig.json               # TypeScript configuration
+├── vite.config.ts              # Vite configuration
+└── package.json                # Project metadata and dependencies
 ```
 
 ## Available Scripts
