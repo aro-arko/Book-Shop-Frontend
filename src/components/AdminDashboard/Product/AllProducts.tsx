@@ -5,17 +5,19 @@ import { TProduct } from "../../../types/product.type";
 import LoadingSpinner from "../../Loading/LoadingSpinner";
 
 const AllProducts = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
+
   const {
     data: response = { data: [] },
     isLoading,
     error,
     refetch,
-  } = useGetProductsQuery(undefined);
-  const [searchTerm, setSearchTerm] = useState("");
+  } = useGetProductsQuery({ limit: 12, page });
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, [refetch, page]);
 
   const products = response.data;
 
@@ -73,6 +75,24 @@ const AllProducts = () => {
               </div>
             </Link>
           ))}
+        </div>
+        {/* Pagination */}
+        <div className="flex justify-center items-center mt-6 space-x-4">
+          <button
+            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            disabled={page === 1}
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg disabled:bg-gray-400 hover:bg-blue-600 transition"
+          >
+            Previous
+          </button>
+          <span className="text-lg font-semibold">Page {page}</span>
+          <button
+            onClick={() => setPage((prev) => prev + 1)}
+            disabled={products.length < 10}
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg disabled:bg-gray-400 hover:bg-blue-600 transition"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
