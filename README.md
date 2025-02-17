@@ -3,6 +3,9 @@
 This project is a frontend application for a bookshop, built using React, TypeScript, and Vite.
 To check the backend repository, visit: [https://github.com/aro-arko/Book-Shop-Server](https://github.com/aro-arko/Book-Shop-Server).
 
+Live URL: [https://bookshop-frontend-six.vercel.app/](https://bookshop-frontend-six.vercel.app/)
+
+
 
 ## Table of Contents
 
