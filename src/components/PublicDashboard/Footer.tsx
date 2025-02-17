@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-950 py-12 relative overflow-hidden">
+    <footer className="bg-gray-950 py-12 relative overflow-hidden mt-auto">
       {/* Decorative Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-900/10 to-transparent transform rotate-45" />
 
