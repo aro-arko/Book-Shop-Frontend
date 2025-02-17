@@ -1,16 +1,16 @@
-import LoadingSpinner from "../Loading/LoadingSpinner";
-import { FaTrash } from "react-icons/fa"; // Import trash icon
+import { useEffect } from "react";
 import {
   useGetCartQuery,
   useRemoveFromCartMutation,
   useUpdateCartMutation,
 } from "../../redux/features/cart/cartApi";
-import { useEffect } from "react";
-import CartSummary from "./CartSummary";
+import LoadingSpinner from "../Loading/LoadingSpinner";
 import Swal from "sweetalert2";
+import { FaTrash } from "react-icons/fa";
+import CartSummary from "./CartSummary";
 
 const Cart = () => {
-  const { data, isLoading, error, refetch } = useGetCartQuery(undefined);
+  const { data, isLoading, refetch } = useGetCartQuery(undefined);
   const [updateCart] = useUpdateCartMutation();
   const [removeFromCart] = useRemoveFromCartMutation();
 
@@ -19,12 +19,11 @@ const Cart = () => {
   }, [refetch]);
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <p>Error loading cart</p>;
 
   const handleUpdateQuantity = async (productId: string, quantity: number) => {
     if (quantity < 1) return;
     await updateCart({ productId, quantity });
-    refetch(); // Refetch the cart data after updating the quantity
+    refetch();
   };
 
   const handleRemoveFromCart = async (productId: string) => {
@@ -49,16 +48,16 @@ const Cart = () => {
     });
   };
 
-  const cart = data?.data;
+  const cart = data?.data || { items: [] };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Your Cart</h1>
-      {cart?.items?.length === 0 ? (
+      {cart.items.length === 0 ? (
         <p className="text-gray-600">Your cart is empty</p>
       ) : (
         <div className="space-y-6">
-          {cart?.items?.map(
+          {cart.items.map(
             (item: {
               product: {
                 _id: string;

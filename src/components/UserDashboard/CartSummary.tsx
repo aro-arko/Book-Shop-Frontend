@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 interface CartItem {
   product: {
@@ -16,7 +17,14 @@ const CartSummary = ({ cart }: { cart: Cart }) => {
     (total, item) => total + item.product.price * item.quantity,
     0
   );
-  // console.log(cart);
+
+  const handleCheckoutClick = () => {
+    if (cart.items.length === 0) {
+      toast.error(
+        "Please add products to the cart before proceeding to checkout."
+      );
+    }
+  };
 
   return (
     <div className="flex justify-center md:justify-end items-center mt-6">
@@ -31,8 +39,19 @@ const CartSummary = ({ cart }: { cart: Cart }) => {
           Thank you for shopping with us! Click the button below to place your
           order and enjoy your new books.
         </p>
-        <Link to="/user/checkout" state={{ cart }}>
-          <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 w-full md:w-auto">
+        <Link
+          to={cart.items.length > 0 ? "/user/checkout" : "#"}
+          state={{ cart }}
+        >
+          <button
+            className={`bg-blue-500 text-white px-6 py-2 rounded-lg transition duration-300 w-full md:w-auto ${
+              cart.items.length === 0
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-blue-600"
+            }`}
+            onClick={handleCheckoutClick}
+            disabled={cart.items.length === 0}
+          >
             Proceed to Checkout
           </button>
         </Link>

@@ -28,6 +28,7 @@ const Login = () => {
       toast.success("Login successful!", { id: toastId });
       navigate(from, { replace: true });
     } catch (err) {
+      console.log(err);
       toast.error("Login failed. Please try again.", { id: toastId });
       console.error("Login error:", err);
     }

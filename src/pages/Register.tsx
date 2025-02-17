@@ -24,6 +24,10 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (formData.password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
     const toastId = toast.loading("Registering...");
     try {
       await register(formData).unwrap();
@@ -33,7 +37,7 @@ const Register = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const errorMessage = (err as any)?.data?.message || "Registration failed";
       toast.error(errorMessage, { id: toastId });
-      // console.error("Registration error:", err);
+      console.error("Registration error:", err);
     }
   };
 
