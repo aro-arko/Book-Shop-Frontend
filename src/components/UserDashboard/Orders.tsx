@@ -1,19 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from "react";
 import { useOwnOrdersQuery } from "../../redux/features/order/orderApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import OrderedProductDetails from "./OrderedProductDetails";
 
 const Orders = () => {
-  const { data, isLoading, error, refetch } = useOwnOrdersQuery(undefined);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      refetch();
-    }, 60000);
-
-    return () => clearInterval(interval);
-  }, [refetch]);
+  const { data, isLoading, error } = useOwnOrdersQuery(undefined);
 
   const ordersData = data?.data;
   // console.log(ordersData);
@@ -53,12 +44,17 @@ const Orders = () => {
               </p>
 
               <div className="space-y-4 mt-4">
-                {order.products.map((item: any) => (
-                  <OrderedProductDetails
-                    key={item.product}
-                    product={item}
-                  ></OrderedProductDetails>
-                ))}
+                {order.products.map(
+                  (item: any) =>
+                    item &&
+                    item.product && (
+                      <OrderedProductDetails
+                        key={item._id}
+                        product={item.product}
+                        quantity={item.quantity}
+                      />
+                    )
+                )}
               </div>
             </div>
           ))}

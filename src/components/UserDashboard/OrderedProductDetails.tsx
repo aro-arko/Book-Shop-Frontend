@@ -1,13 +1,16 @@
 import { useGetProductByIdQuery } from "../../redux/features/product/productApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 
-interface Product {
+const OrderedProductDetails = ({
+  product,
+  quantity,
+}: {
   product: string;
   quantity: number;
-}
-
-const OrderedProductDetails = ({ product }: { product: Product }) => {
-  const { data, isLoading, error } = useGetProductByIdQuery(product.product);
+}) => {
+  // console.log(product);
+  const { data, isLoading, error } = useGetProductByIdQuery(product);
+  console.log(data);
 
   if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading product details</p>;
@@ -29,7 +32,7 @@ const OrderedProductDetails = ({ product }: { product: Product }) => {
           <p className="text-gray-600">{productData?.author}</p>
         </div>
       </div>
-      <p className="text-lg text-gray-800">Quantity: {product.quantity}</p>
+      <p className="text-lg text-gray-800">Quantity: {quantity}</p>
     </div>
   );
 };

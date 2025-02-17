@@ -16,11 +16,13 @@ import Navbar from "../pages/Navbar";
 import Footer from "../components/PublicDashboard/Footer";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
