@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import banner from "../../../assets/images/banner.png";
+import bannerImg from "../../../assets/images/banner.png";
 
 const Banner = () => {
   return (
@@ -20,7 +20,7 @@ const Banner = () => {
         </div>
         <div className="md:w-1/2">
           <img
-            src={banner}
+            src={bannerImg}
             alt="Banner"
             className="w-full h-auto rounded-lg shadow-lg"
           />
