@@ -54,8 +54,16 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+    <div className="min-h-screen py-10 px-4">
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold text-gray-800 sm:mb-0">
+          Product Details
+        </h1>
+        <p className="text-gray-600 pt-2">
+          View and manage your product details from here.
+        </p>
+      </div>
+      <div className="mx-auto bg-white shadow-xl rounded-2xl p-8">
         <div className="flex flex-col md:flex-row items-center md:items-start">
           <img
             src={product.image}

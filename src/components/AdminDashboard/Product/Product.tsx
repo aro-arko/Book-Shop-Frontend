@@ -1,24 +1,44 @@
-import productLogo from "../../../assets/images/product.jpg"; // Adjust the path to your logo image
+import { Package } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useGetProductsQuery } from "../../../redux/features/product/productApi";
 
 const Product = () => {
+  const {
+    data: response = { data: [], total: 0 },
+    isLoading,
+    error,
+  } = useGetProductsQuery({
+    queryParams: {
+      page: 1,
+      limit: Number.MAX_SAFE_INTEGER,
+    },
+  });
+
+  console.log(response);
+
+  const totalProducts = response?.data?.length || 0;
+
   return (
-    <>
-      <div className="bg-gray-100 py-10 px-4">
-        <Link to="/admin/products">
-          <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-8 flex flex-col items-center">
-            <img
-              src={productLogo}
-              alt="Product Logo"
-              className="w-auto h-32 mb-6 border-gray-300"
-            />
-            <h1 className="text-3xl font-semibold text-gray-800 text-center mb-6">
-              Product Management
-            </h1>
-          </div>
-        </Link>
+    <Link
+      to="/admin/products"
+      className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow flex flex-col items-center"
+    >
+      <div className="bg-blue-100 p-3 rounded-full mb-4">
+        <Package className="h-6 w-6 text-blue-600" />
       </div>
-    </>
+
+      <h3 className="text-lg font-medium text-gray-500 mb-1">Products</h3>
+
+      {isLoading ? (
+        <div className="h-8 w-8 rounded-full border-2 border-gray-300 border-t-blue-500 animate-spin" />
+      ) : error ? (
+        <p className="text-red-500 text-sm">Error loading</p>
+      ) : (
+        <p className="text-2xl font-bold text-gray-800">
+          {totalProducts.toLocaleString()}
+        </p>
+      )}
+    </Link>
   );
 };
 

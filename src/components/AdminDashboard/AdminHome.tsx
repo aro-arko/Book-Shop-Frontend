@@ -4,7 +4,7 @@ import Product from "./Product/Product";
 const AdminHome = () => {
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto">
         <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
           Admin Dashboard
         </h1>

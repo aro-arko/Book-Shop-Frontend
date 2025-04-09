@@ -1,67 +1,103 @@
-import { useParams, Link } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useParams } from "react-router-dom";
 import { useGetOrderByIdQuery } from "../../../redux/features/order/orderApi";
-import UserDetails from "../User/UserDetails"; // Import UserDetails
-import OrderProducts from "./OrderProducts"; // Import OrderProducts
-import { FaArrowLeft } from "react-icons/fa"; // Import Font Awesome arrow icon
 import LoadingSpinner from "../../Loading/LoadingSpinner";
-
-interface Product {
-  _id: string;
-  product: string;
-  quantity: number;
-}
+import UserDetails from "../User/UserDetails";
+import OrderProducts from "./OrderProducts";
 
 const OrderDetails = () => {
   const { id } = useParams<{ id: string }>();
-  // console.log("Order ID from params:", id); // Log the order ID to ensure it's being passed correctly
-
   const { data, isLoading, error } = useGetOrderByIdQuery(id);
 
   if (isLoading) return <LoadingSpinner />;
   if (error) {
-    console.error("Error fetching order details:", error); // Log the error for debugging
-    return <p>Error loading order details</p>;
+    console.error("Error fetching order details:", error);
+    return (
+      <p className="text-red-500 text-center py-10">
+        Error loading order details
+      </p>
+    );
   }
 
   const order = data?.data;
-  // console.log(order);
-
-  if (!order) return <p>No order details available</p>;
+  if (!order)
+    return <p className="text-center py-10">No order details available</p>;
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl p-8">
-        <div className="flex items-center mb-6">
-          <Link
-            to={`/admin/orders`}
-            className="text-gray-800 hover:text-blue-800 transition duration-300"
-          >
-            <FaArrowLeft className="h-6 w-6" />
-          </Link>
-          <h1 className="text-3xl font-semibold text-gray-800 ml-4">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto">
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-gray-800 sm:mb-0">
             Order Details
           </h1>
-        </div>
-        <UserDetails userId={order.user} /> {/* Pass userId to UserDetails */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold text-gray-800">
-            Order Information
-          </h2>
-          <p className="text-gray-600">Order ID: {order._id}</p>
-          <p className="text-gray-600">Status: {order.status}</p>
-          <p className="text-gray-600">
-            Total Price: ${order.totalPrice.toFixed(2)}
+          <p className="text-gray-600 pt-2">
+            View and manage your order details from here.
           </p>
         </div>
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold text-gray-800">Products</h2>
-          {order.products.map((product: Product) => (
-            <OrderProducts
-              key={product._id}
-              productId={product.product}
-              quantity={product.quantity}
-            />
-          ))}
+        {/* User Information */}
+        <UserDetails userId={order.user} />
+        {/* Order Information */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Order Information
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm font-medium text-gray-500">Order ID</p>
+              <p className="text-base font-semibold text-gray-800 break-all">
+                {order._id}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium text-gray-500">Date</p>
+              <p className="text-base font-semibold text-gray-800">
+                {new Date(order.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium text-gray-500">Status</p>
+              <p
+                className={`text-base font-semibold ${
+                  order.status === "Paid" ? "text-green-600" : "text-yellow-600"
+                }`}
+              >
+                {order.status}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium text-gray-500">Total Price</p>
+              <p className="text-base font-semibold text-gray-800">
+                ${order.totalPrice.toFixed(2)}
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* Products */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+            Products ({order.products.length})
+          </h2>
+
+          <div className="space-y-4">
+            {order.products.map((product: any) => (
+              <OrderProducts
+                key={product._id}
+                productId={product.product}
+                quantity={product.quantity}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

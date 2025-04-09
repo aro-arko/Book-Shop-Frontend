@@ -1,7 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { Bot, SquareTerminal } from "lucide-react";
+import {
+  LayoutDashboard,
+  User,
+  Package,
+  PlusCircle,
+  ShoppingCart,
+  Settings,
+  Key,
+} from "lucide-react";
 
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
@@ -20,44 +28,47 @@ const data = {
     {
       title: "Dashboard",
       url: "/admin",
-      icon: SquareTerminal,
+      icon: LayoutDashboard,
       isActive: true,
     },
     {
       title: "Profile",
       url: "/admin/profile",
-      icon: SquareTerminal,
+      icon: User,
       isActive: true,
     },
     {
       title: "Products",
       url: "#",
-      icon: Bot,
+      icon: Package,
       items: [
         {
           title: "All Products",
           url: "/admin/products",
+          icon: Package,
         },
         {
           title: "Add Product",
           url: "/admin/products/create-product",
+          icon: PlusCircle,
         },
       ],
     },
     {
       title: "Orders",
       url: "/admin/orders",
-      icon: Bot,
+      icon: ShoppingCart,
       isActive: true,
     },
     {
       title: "Settings",
       url: "#",
-      icon: Bot,
+      icon: Settings,
       items: [
         {
           title: "Change Password",
           url: "/admin/change-password",
+          icon: Key,
         },
       ],
     },
@@ -67,9 +78,9 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const currentUser = useAppSelector(selectCurrentUser);
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar className="text-gray-300" collapsible="icon" {...props}>
       <SidebarHeader></SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="text-gray-900">
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
