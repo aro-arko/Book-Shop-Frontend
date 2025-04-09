@@ -4,6 +4,7 @@ import { useAppSelector } from "../redux/hooks";
 import { selectCurrentToken } from "../redux/features/auth/authSlice";
 import Navbar from "../pages/Navbar";
 import Footer from "../components/PublicDashboard/Footer";
+// import Footer from "../components/PublicDashboard/Footer";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const token = useAppSelector(selectCurrentToken);
@@ -17,7 +18,7 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     <div className="flex flex-col min-h-screen">
       {user?.role !== "admin" ? <Navbar /> : null}
       <main className="flex-grow">{children}</main>
-      <Footer />
+      {user?.role !== "admin" ? <Footer /> : null}
     </div>
   );
 };
