@@ -28,9 +28,19 @@ const userApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllUsers: builder.query({
+      query: () => ({
+        url: "/user",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetUserQuery, useUpdateUserMutation, useGetUserByIdQuery } =
-  userApi;
+export const {
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useGetUserByIdQuery,
+  useGetAllUsersQuery,
+} = userApi;
 export default userApi;

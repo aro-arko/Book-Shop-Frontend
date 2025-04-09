@@ -1,5 +1,4 @@
 import { Package } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../../redux/features/product/productApi";
 
 const Product = () => {
@@ -19,10 +18,7 @@ const Product = () => {
   const totalProducts = response?.data?.length || 0;
 
   return (
-    <Link
-      to="/admin/products"
-      className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow flex flex-col items-center"
-    >
+    <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow flex flex-col items-center">
       <div className="bg-blue-100 p-3 rounded-full mb-4">
         <Package className="h-6 w-6 text-blue-600" />
       </div>
@@ -38,7 +34,7 @@ const Product = () => {
           {totalProducts.toLocaleString()}
         </p>
       )}
-    </Link>
+    </div>
   );
 };
 

@@ -83,7 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="text-gray-900">
         <NavMain items={data.navMain} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="text-gray-900">
         <NavUser user={currentUser || { email: "" }} />
       </SidebarFooter>
       <SidebarRail />
