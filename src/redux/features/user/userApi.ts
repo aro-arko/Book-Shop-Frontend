@@ -34,6 +34,12 @@ const userApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getAllUsersStats: builder.query({
+      query: () => ({
+        url: "/user/all/stats",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -42,5 +48,6 @@ export const {
   useUpdateUserMutation,
   useGetUserByIdQuery,
   useGetAllUsersQuery,
+  useGetAllUsersStatsQuery,
 } = userApi;
 export default userApi;

@@ -47,8 +47,10 @@ const WhyChooseUs = () => {
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 lg:px-0">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-gray-900">Features</h2>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-extrabold text-gray-900">
+            Why Choose Us?
+          </h2>
+          <p className="text-gray-600 mt-4 mx-auto">
             A boutique bookshop experience with carefully selected titles and
             personalized service.
           </p>

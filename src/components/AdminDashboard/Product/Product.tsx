@@ -13,7 +13,7 @@ const Product = () => {
     },
   });
 
-  console.log(response);
+  // console.log(response);
 
   const totalProducts = response?.data?.length || 0;
 
