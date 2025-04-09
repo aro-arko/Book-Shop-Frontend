@@ -232,17 +232,14 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center">
             {user && (
-              <Link to="/user/cart" className="relative">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaShoppingCart className="text-xl text-gray-700 hover:text-primary" />
-                </motion.div>
+              <Link to="/user/cart" className="relative mr-6">
+                <div>
+                  <FaShoppingCart className="text-xl text-gray-700" />
+                </div>
                 {cartItems.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-2 -right-2 bg-gray-900 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                     {cartItems.length}
                   </span>
                 )}
@@ -252,11 +249,8 @@ const Navbar = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger className="focus:outline-none">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center"
-                  >
-                    <FaUserCircle className="text-xl text-primary" />
+                  <motion.div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <FaUserCircle className="text-2xl" />
                   </motion.div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-48 py-1 shadow-lg rounded-md bg-white border border-gray-100">
