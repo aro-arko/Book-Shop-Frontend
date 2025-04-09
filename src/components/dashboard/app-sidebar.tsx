@@ -52,9 +52,14 @@ const data = {
     },
     {
       title: "Settings",
-      url: "/admin/settings",
+      url: "#",
       icon: Bot,
-      isActive: true,
+      items: [
+        {
+          title: "Change Password",
+          url: "/admin/change-password",
+        },
+      ],
     },
   ],
 };

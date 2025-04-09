@@ -30,7 +30,7 @@ const AllOrders = () => {
     .reduce((acc: number, order: Order) => acc + order.totalPrice, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="mb-2 text-center">
         <h1 className="text-3xl font-bold text-gray-800 sm:mb-0">All Orders</h1>
         <p className="text-gray-600 pt-2">
