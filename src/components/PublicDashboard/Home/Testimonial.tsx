@@ -39,7 +39,7 @@ const Testimonial = () => {
     <div className=" bg-gray-50">
       <div className="py-16 px-4 lg:px-0 mx-auto max-w-7xl">
         <h2 className="text-3xl font-extrabold text-center text-gray-900 mb-10">
-          What Our Customers Say
+          Success Stories
         </h2>
 
         <Swiper

@@ -58,7 +58,7 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="flex flex-col bg-white shadow-sm hover:shadow-md transition-all duration-300 rounded-xl border border-gray-100 hover:border-blue-100 h-full"
+              className="flex flex-col bg-white hover:shadow-sm transition-all duration-300 rounded-xl border border-gray-100 hover:border-blue-100 h-full"
             >
               <div className="p-8 flex flex-col h-full">
                 <CardHeader className="flex flex-col items-center px-0">
