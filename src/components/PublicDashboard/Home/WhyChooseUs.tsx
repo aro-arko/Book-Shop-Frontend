@@ -15,9 +15,9 @@ const features = [
     title: "Curated Collection",
     description: "Handpicked books for discerning readers",
     details: [
-      "Expertly selected titles",
-      "Quality over quantity",
-      "New arrivals updated weekly",
+      "Carefully chosen by genre experts",
+      "Focused on quality, not just quantity",
+      "Fresh arrivals added every single week",
     ],
   },
   {
@@ -25,9 +25,9 @@ const features = [
     title: "Fast Delivery",
     description: "Get your books quickly and safely",
     details: [
-      "Nationwide shipping",
-      "Careful packaging",
-      "Order tracking included",
+      "We offer nationwide shipping services",
+      "Each package is securely wrapped",
+      "Track your order at every step",
     ],
   },
   {
@@ -35,9 +35,9 @@ const features = [
     title: "Authentic Books",
     description: "Guaranteed genuine publications",
     details: [
-      "Direct from publishers",
-      "No counterfeit copies",
-      "Quality assurance",
+      "Sourced directly from trusted publishers",
+      "No fake or pirated copies ever sold",
+      "Strict quality assurance before dispatch",
     ],
   },
 ];
