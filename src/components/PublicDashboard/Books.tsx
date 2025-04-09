@@ -3,7 +3,9 @@ import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import BookCard from "./BookCard";
 import { FaFilter, FaSearch } from "react-icons/fa";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import ResetFilters from "./ResetFilters";
+import { Button } from "../ui/button";
 
 const Books = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,7 +19,7 @@ const Books = () => {
 
   const [params] = useSearchParams();
   const queryParams = Object.fromEntries([...params]);
-  // console.log(queryParams);
+  const navigate = useNavigate();
 
   const {
     data: products,
@@ -31,6 +33,33 @@ const Books = () => {
       limit: 12,
     },
   });
+
+  const resetAllFilters = () => {
+    setSelectedCategory("");
+    setPriceRange([0, 100]);
+    setAvailability("");
+    setSortOption("title");
+    setSearchQuery("");
+    setPage(1);
+    navigate("/books");
+  };
+
+  const applyFilters = () => {
+    const newParams = new URLSearchParams();
+
+    if (selectedCategory) newParams.set("category", selectedCategory);
+    if (priceRange[0] !== 0)
+      newParams.set("minPrice", priceRange[0].toString());
+    if (priceRange[1] !== 100)
+      newParams.set("maxPrice", priceRange[1].toString());
+    if (availability)
+      newParams.set("inStock", availability === "inStock" ? "true" : "false");
+    if (sortOption !== "title") newParams.set("sort", sortOption);
+    if (page !== 1) newParams.set("page", page.toString());
+
+    navigate(`/books?${newParams.toString()}`);
+    setIsFilterOpen(false);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -91,22 +120,234 @@ const Books = () => {
     });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-0 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      {/* Header */}
       <div className="mb-6 text-center">
-        <h1 className="text-3xl font-bold text-gray-800">All Books</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+          All Books
+        </h1>
       </div>
 
-      <div className="flex justify-between items-center mb-6">
-        <button
-          onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
-        >
-          <FaFilter className="mr-2" />
-          Filters
-        </button>
+      {/* Mobile Layout - Filter and Search side by side */}
+      <div className="md:hidden flex justify-between items-center mb-4 gap-3">
+        {/* Filter Button - Left side */}
+        <div className="">
+          <Button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className=" bg-blue-500 mx-auto text-white px-3 py-3 rounded-lg hover:bg-blue-600 transition"
+          >
+            <FaFilter className="" />
+          </Button>
+        </div>
 
-        {/* Search Bar */}
-        <div className="relative flex items-center w-1/3">
+        {/* Search Bar - Right side */}
+        <div className="relative w-full">
+          <FaSearch className="absolute left-3 top-3 text-gray-500" />
+          <input
+            type="text"
+            placeholder={`Search by ${searchField}...`}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+      </div>
+
+      {/* Mobile Filter Dropdown */}
+      {isFilterOpen && (
+        <div className="md:hidden bg-white p-4 rounded-lg shadow-xl border border-gray-200 mb-6">
+          <h2 className="text-xl font-bold mb-4">Filters</h2>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Category
+            </label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="">All Categories</option>
+              <option value="Fiction">Fiction</option>
+              <option value="Science">Science</option>
+              <option value="SelfDevelopment">Self Development</option>
+              <option value="Poetry">Poetry</option>
+              <option value="Religious">Religious</option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Price Range
+            </label>
+            <div className="flex gap-2">
+              <input
+                type="number"
+                placeholder="Min"
+                value={priceRange[0]}
+                onChange={(e) =>
+                  setPriceRange([Number(e.target.value), priceRange[1]])
+                }
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              />
+              <input
+                type="number"
+                placeholder="Max"
+                value={priceRange[1]}
+                onChange={(e) =>
+                  setPriceRange([priceRange[0], Number(e.target.value)])
+                }
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Availability
+            </label>
+            <select
+              value={availability}
+              onChange={(e) => setAvailability(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="">All</option>
+              <option value="inStock">In Stock</option>
+              <option value="outOfStock">Out of Stock</option>
+            </select>
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Sort By
+            </label>
+            <select
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="title">Title</option>
+              <option value="price">Price</option>
+              <option value="author">Author</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col sm:flex-row justify-between gap-2">
+            <ResetFilters onClick={resetAllFilters} />
+            <button
+              onClick={applyFilters}
+              className="bg-blue-500 text-white px-3 py-1.5 rounded-md hover:bg-blue-600 transition text-sm"
+            >
+              Apply Filters
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Desktop Layout */}
+      {/* Desktop Layout */}
+      <div className="hidden md:flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <div className="relative">
+          <button
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+            className="flex items-center justify-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+          >
+            <FaFilter className="mr-2" />
+            Filters
+          </button>
+
+          {isFilterOpen && (
+            <div className="absolute left-0 top-full mt-2 z-50 w-96 bg-white p-4 rounded-lg shadow-xl border border-gray-200">
+              <h2 className="text-xl font-bold mb-4">Filters</h2>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Category
+                </label>
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                >
+                  <option value="">All Categories</option>
+                  <option value="Fiction">Fiction</option>
+                  <option value="Science">Science</option>
+                  <option value="SelfDevelopment">Self Development</option>
+                  <option value="Poetry">Poetry</option>
+                  <option value="Religious">Religious</option>
+                </select>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Price Range
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    placeholder="Min"
+                    value={priceRange[0]}
+                    onChange={(e) =>
+                      setPriceRange([Number(e.target.value), priceRange[1]])
+                    }
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Max"
+                    value={priceRange[1]}
+                    onChange={(e) =>
+                      setPriceRange([priceRange[0], Number(e.target.value)])
+                    }
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Availability
+                </label>
+                <select
+                  value={availability}
+                  onChange={(e) => setAvailability(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                >
+                  <option value="">All</option>
+                  <option value="inStock">In Stock</option>
+                  <option value="outOfStock">Out of Stock</option>
+                </select>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Sort By
+                </label>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                >
+                  <option value="title">Title</option>
+                  <option value="price">Price</option>
+                  <option value="author">Author</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-between gap-2">
+                <ResetFilters onClick={resetAllFilters} />
+                <button
+                  onClick={applyFilters}
+                  className="bg-blue-500 text-white px-3 py-1.5 rounded-md hover:bg-blue-600 transition text-sm"
+                >
+                  Apply Filters
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="flex relative items-center w-1/3">
           <FaSearch className="absolute left-3 top-3 text-gray-500" />
           <input
             type="text"
@@ -126,109 +367,13 @@ const Books = () => {
         </div>
       </div>
 
-      {/* Filter Overlay */}
-      {isFilterOpen && (
-        <div className="fixed inset-0 bg-white bg-opacity-90 backdrop-blur-sm flex justify-center items-start z-50 pt-20">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl border border-gray-200">
-            <h2 className="text-xl font-bold mb-4">Filters</h2>
-
-            {/* Category Filter */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Category
-              </label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full mt-1 pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              >
-                <option>All Categories</option>
-                <option value="Fiction">Fiction</option>
-                <option value="Science">Science</option>
-                <option value="SelfDevelopment">Self Development</option>
-                <option value="Poetry">Poetry</option>
-                <option value="Religious">Religious</option>
-              </select>
-            </div>
-
-            {/* Price Range Filter */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Price Range
-              </label>
-              <div className="flex gap-2 mt-1">
-                <input
-                  type="number"
-                  placeholder="Min Price"
-                  value={priceRange[0]}
-                  onChange={(e) =>
-                    setPriceRange([Number(e.target.value), priceRange[1]])
-                  }
-                  className="w-1/2 pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                />
-                <input
-                  type="number"
-                  placeholder="Max Price"
-                  value={priceRange[1]}
-                  onChange={(e) =>
-                    setPriceRange([priceRange[0], Number(e.target.value)])
-                  }
-                  className="w-1/2 pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                />
-              </div>
-            </div>
-
-            {/* Availability Filter */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Availability
-              </label>
-              <select
-                value={availability}
-                onChange={(e) => setAvailability(e.target.value)}
-                className="w-full mt-1 pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              >
-                <option value="">All</option>
-                <option value="inStock">In Stock</option>
-                <option value="outOfStock">Out of Stock</option>
-              </select>
-            </div>
-
-            {/* Sorting Options */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Sort By
-              </label>
-              <select
-                value={sortOption}
-                onChange={(e) => setSortOption(e.target.value)}
-                className="w-full mt-1 pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              >
-                <option value="title">Title</option>
-                <option value="price">Price</option>
-                <option value="author">Author</option>
-              </select>
-            </div>
-
-            {/* Close Button */}
-            <div className="flex justify-end">
-              <button
-                onClick={() => setIsFilterOpen(false)}
-                className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Books Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
         {filteredProducts.map((product) => (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          <BookCard key={product._id} product={product} />
+          <BookCard
+            key={product._id}
+            product={{ ...product, price: parseFloat(product.price) }}
+          />
         ))}
       </div>
 
