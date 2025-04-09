@@ -58,10 +58,15 @@ const CreateProduct = () => {
   return (
     <div className="min-h-screen py-10 px-4">
       <Toaster />
-      <h1 className="text-3xl font-bold text-center mb-4 text-gray-900">
-        Add Product
-      </h1>
-      <div className="max-w-7xl mx-auto bg-white shadow-lg rounded-2xl px-8 py-16 border border-gray-100">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-center text-gray-900">
+          Add Product
+        </h1>
+        <p className="text-center text-gray-600 mt-2">
+          Fill in the details below to create a new product.
+        </p>
+      </div>
+      <div className=" mx-auto bg-white shadow-lg rounded-2xl px-8 py-16 border border-gray-100">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-gray-700">Title</label>

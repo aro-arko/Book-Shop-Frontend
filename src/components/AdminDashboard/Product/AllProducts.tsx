@@ -108,10 +108,15 @@ const AllProducts = () => {
 
   return (
     <div className="min-h-screen py-10 rounded-xl px-4">
-      <h1 className="text-3xl font-bold mb-4 text-center text-gray-900">
-        All Products
-      </h1>
-      <div className="max-w-7xl mx-auto bg-white shadow-lg rounded-2xl px-8 py-16 border border-gray-100">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-center text-gray-900">
+          All Products
+        </h1>
+        <p className="text-gray-700 text-center mt-2">
+          Manage your products efficiently
+        </p>
+      </div>
+      <div className=" mx-auto bg-white shadow-lg rounded-2xl px-8 py-16 border border-gray-100">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
           {/* Mobile Layout - Filter and Search side by side */}
           <div className="md:hidden flex justify-between items-center w-full gap-3">

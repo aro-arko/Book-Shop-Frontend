@@ -24,6 +24,12 @@ const data = {
       isActive: true,
     },
     {
+      title: "Profile",
+      url: "/admin/profile",
+      icon: SquareTerminal,
+      isActive: true,
+    },
+    {
       title: "Products",
       url: "#",
       icon: Bot,
@@ -37,6 +43,18 @@ const data = {
           url: "/admin/products/create-product",
         },
       ],
+    },
+    {
+      title: "Orders",
+      url: "/admin/orders",
+      icon: Bot,
+      isActive: true,
+    },
+    {
+      title: "Settings",
+      url: "/admin/settings",
+      icon: Bot,
+      isActive: true,
     },
   ],
 };

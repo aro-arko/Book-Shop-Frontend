@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"; // For navigation
+import { useNavigate } from "react-router-dom";
 import { useGetUserQuery } from "../../redux/features/user/userApi";
 import profileImg from "../../assets/images/admin.webp";
 
@@ -6,7 +6,6 @@ const AdminProfile = () => {
   const navigate = useNavigate();
   const { data: userData } = useGetUserQuery(undefined);
 
-  // Destructuring the user data to make the code cleaner
   const { name, email, phone, address, city } = userData?.data || {};
 
   const handleEditProfile = () => {
@@ -14,57 +13,84 @@ const AdminProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-xl p-8 border border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
-          Admin Profile
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Profile Image */}
-          <div className="w-40 h-40 bg-gray-200 rounded-full mx-auto overflow-hidden border-4 border-gray-100 my-auto">
-            <img
-              src={profileImg}
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto">
+        {/* Profile Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-800">Admin Profile</h1>
+          <p className="text-gray-600 mt-2">
+            View and manage your profile information
+          </p>
+        </div>
+
+        {/* Profile Card */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          {/* Profile Image at Top */}
+          <div className="flex justify-center pt-8">
+            <div className="relative w-32 h-32 rounded-full border-4 border-white shadow-lg mb-4">
+              <img
+                src={profileImg}
+                alt="Profile"
+                className="w-full h-full object-cover rounded-full"
+              />
+              <div className="absolute inset-0 rounded-full border-2 border-blue-100"></div>
+            </div>
           </div>
 
-          {/* Profile Details */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-4">
-              <span className="font-semibold text-gray-700 text-lg">Name:</span>
-              <span className="text-gray-600 text-lg">{name || "N/A"}</span>
+          {/* Profile Details Below Image */}
+          <div className="p-6 md:p-8">
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1 bg-gray-50 p-4 rounded-lg">
+                  <p className="text-sm font-medium text-gray-500">Full Name</p>
+                  <p className="text-lg font-semibold">
+                    {name || "Not provided"}
+                  </p>
+                </div>{" "}
+                <div className="space-y-1 bg-gray-50 p-4 rounded-lg">
+                  <p className="text-sm font-medium text-gray-500">Email</p>
+                  <p className="text-lg font-semibold">
+                    {email || "Not provided"}
+                  </p>
+                </div>
+                <div className="space-y-1 bg-gray-50 p-4 rounded-lg">
+                  <p className="text-sm font-medium text-gray-500">Phone</p>
+                  <p className="text-lg font-semibold">
+                    {phone || "Not provided"}
+                  </p>
+                </div>
+                <div className="space-y-1 bg-gray-50 p-4 rounded-lg">
+                  <p className="text-sm font-medium text-gray-500">City</p>
+                  <p className="text-lg font-semibold">
+                    {city || "Not provided"}
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-1 bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-500">Address</p>
+                <p className="text-lg font-semibold">
+                  {address || "Not provided"}
+                </p>
+              </div>
+
+              {/* Edit Profile Button */}
+              <div className="pt-4 flex justify-center">
+                <button
+                  onClick={handleEditProfile}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200 flex items-center gap-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                  </svg>
+                  Edit Profile
+                </button>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="font-semibold text-gray-700 text-lg">
-                Email:
-              </span>
-              <span className="text-gray-600 text-lg">{email || "N/A"}</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="font-semibold text-gray-700 text-lg">
-                Phone:
-              </span>
-              <span className="text-gray-600 text-lg">{phone || "N/A"}</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="font-semibold text-gray-700 text-lg">
-                Address:
-              </span>
-              <span className="text-gray-600 text-lg">{address || "N/A"}</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="font-semibold text-gray-700 text-lg">City:</span>
-              <span className="text-gray-600 text-lg">{city || "N/A"}</span>
-            </div>
-            <Link to="/admin/profile/edit">
-              <button
-                onClick={handleEditProfile}
-                className="bg-blue-500 text-white py-2 px-6 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors"
-              >
-                Edit Profile
-              </button>
-            </Link>
           </div>
         </div>
       </div>
