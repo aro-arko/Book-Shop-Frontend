@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "sonner";
 import { useCreateProductMutation } from "../../../redux/features/product/productApi";
-import { FaArrowLeft } from "react-icons/fa";
 
 const categories = [
   "Fiction",
@@ -43,8 +42,8 @@ const CreateProduct = () => {
     e.preventDefault();
     const newProductData = {
       ...formData,
-      price: Number(formData.price), // Convert price to number
-      quantity: Number(formData.quantity), // Convert quantity to number
+      price: Number(formData.price),
+      quantity: Number(formData.quantity),
     };
     try {
       await createProduct(newProductData).unwrap();
@@ -57,20 +56,12 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
+    <div className="min-h-screen py-10 px-4">
       <Toaster />
-      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
-        <div className="flex items-center mb-6">
-          <button
-            onClick={() => navigate(-1)}
-            className="text-blue-600 hover:text-blue-800 transition duration-300"
-          >
-            <FaArrowLeft className="h-6 w-6" />
-          </button>
-          <h1 className="text-3xl font-semibold text-gray-800 ml-4">
-            Create Product
-          </h1>
-        </div>
+      <h1 className="text-3xl font-bold text-center mb-4 text-gray-900">
+        Add Product
+      </h1>
+      <div className="max-w-7xl mx-auto bg-white shadow-lg rounded-2xl px-8 py-16 border border-gray-100">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-gray-700">Title</label>
