@@ -3,21 +3,19 @@ import baseApi from "../../api/baseApi";
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({
-        category,
-        page,
-        limit,
-      }: { category?: string; page?: number; limit?: number } = {}) => {
-        const params = new URLSearchParams();
-        if (category) params.append("category", category);
-        if (page) params.append("page", page.toString());
-        if (limit) params.append("limit", limit.toString());
+      query: ({ queryParams = {} }) => {
+        // Check if queryParams exists and has keys
+        const queryString = Object.keys(queryParams).length
+          ? new URLSearchParams(queryParams).toString()
+          : "";
+
         return {
-          url: `/product?${params.toString()}`,
+          url: `/product${queryString && `?${queryString}`}`, // Append query string if present
           method: "GET",
         };
       },
     }),
+
     getProductById: builder.query({
       query: (id: string) => ({
         url: `/product/${id}`,

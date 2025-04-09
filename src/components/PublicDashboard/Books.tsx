@@ -3,6 +3,7 @@ import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import BookCard from "./BookCard";
 import { FaFilter, FaSearch } from "react-icons/fa";
+import { useSearchParams } from "react-router-dom";
 
 const Books = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,7 +13,11 @@ const Books = () => {
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [availability, setAvailability] = useState("");
   const [page, setPage] = useState(1);
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // State to control filter overlay
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const [params] = useSearchParams();
+  const queryParams = Object.fromEntries([...params]);
+  // console.log(queryParams);
 
   const {
     data: products,
@@ -20,9 +25,11 @@ const Books = () => {
     error,
     refetch,
   } = useGetProductsQuery({
-    category: selectedCategory,
-    page,
-    limit: 12,
+    queryParams: {
+      ...queryParams,
+      page,
+      limit: 12,
+    },
   });
 
   useEffect(() => {
@@ -58,6 +65,12 @@ const Books = () => {
         .toLowerCase()
         .includes(searchQuery.toLowerCase())
     )
+    .filter((product: Product) => {
+      if (selectedCategory) {
+        return product.category === selectedCategory;
+      }
+      return true;
+    })
     .filter(
       (product: Product) =>
         parseFloat(product.price) >= priceRange[0] &&
@@ -78,15 +91,12 @@ const Books = () => {
     });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      {/* Header */}
+    <div className="max-w-7xl mx-auto px-4 lg:px-0 py-10">
       <div className="mb-6 text-center">
         <h1 className="text-3xl font-bold text-gray-800">All Books</h1>
       </div>
 
-      {/* Search Bar and Filter Button */}
       <div className="flex justify-between items-center mb-6">
-        {/* Filter Button */}
         <button
           onClick={() => setIsFilterOpen(!isFilterOpen)}
           className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
@@ -132,7 +142,7 @@ const Books = () => {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="w-full mt-1 pl-4 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
               >
-                <option value="">All Categories</option>
+                <option>All Categories</option>
                 <option value="Fiction">Fiction</option>
                 <option value="Science">Science</option>
                 <option value="SelfDevelopment">Self Development</option>
