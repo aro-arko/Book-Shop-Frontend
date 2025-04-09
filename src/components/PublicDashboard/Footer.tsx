@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -17,26 +16,17 @@ const Footer = () => {
     }
   };
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-  };
-
   return (
     <footer className="bg-gray-950 py-12 relative overflow-hidden mt-auto">
       {/* Decorative Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-900/10 to-transparent transform rotate-45" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-8"
-          {...fadeIn}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-white">BookShop</h2>
-            <p className="text-gray-400">
+            <h2 className="text-2xl font-bold text-white">BookShop</h2>
+            <p className="text-sm text-gray-400">
               Your one-stop destination for the best books. Discover, learn, and
               grow with us.
             </p>
@@ -89,7 +79,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.to}
-                    className="text-gray-400 hover:text-blue-400 transition duration-300 hover:underline"
+                    className="text-sm text-gray-400 hover:text-blue-400 transition duration-300 hover:underline"
                   >
                     {link.text}
                   </Link>
@@ -108,7 +98,7 @@ const Footer = () => {
             ].map((info, index) => (
               <p
                 key={index}
-                className="text-gray-400 hover:text-blue-400 transition duration-300"
+                className="text-sm text-gray-400 hover:text-blue-400 transition duration-300"
               >
                 {info.text}
               </p>
@@ -118,7 +108,7 @@ const Footer = () => {
           {/* Newsletter Subscription */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-white">Newsletter</h3>
-            <p className="text-gray-400">
+            <p className="text-sm text-gray-400">
               Subscribe to our newsletter for the latest updates and offers.
             </p>
             <form className="flex space-x-2" onSubmit={handleSubscribe}>
@@ -140,15 +130,12 @@ const Footer = () => {
               <p className="text-green-400 mt-2">{successMessage}</p>
             )}
           </div>
-        </motion.div>
+        </div>
 
         {/* Copyright */}
-        <motion.div
-          className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500"
-          {...fadeIn}
-        >
+        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} BookShop. All rights reserved.
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
