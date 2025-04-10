@@ -1,5 +1,6 @@
 import Banner from "../components/PublicDashboard/Home/Banner";
 import FeaturedProducts from "../components/PublicDashboard/Home/FeaturedProducts";
+import NewsLetter from "../components/PublicDashboard/Home/NewsLetter";
 import PlatformOverview from "../components/PublicDashboard/Home/PlatformOverview";
 import QuoteOfTheDay from "../components/PublicDashboard/Home/QuoteOfTheDay";
 import Testimonial from "../components/PublicDashboard/Home/Testimonial";
@@ -14,6 +15,7 @@ const Home = () => {
       <PlatformOverview />
       <Testimonial></Testimonial>
       <QuoteOfTheDay />
+      <NewsLetter />
     </div>
   );
 };

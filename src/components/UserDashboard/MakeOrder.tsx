@@ -60,7 +60,7 @@ const MakeOrder = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
         <h1 className="text-3xl font-semibold text-gray-800 text-center mb-6">
           Make Order
         </h1>

@@ -17,7 +17,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-950 py-12 relative overflow-hidden mt-auto">
+    <footer className="bg-gray-950 pt-12 pb-4 relative overflow-hidden mt-auto">
       {/* Decorative Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-900/10 to-transparent transform rotate-45" />
 
@@ -133,7 +133,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+        <div className=" border-gray-700 pt-2 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} BookShop. All rights reserved.
         </div>
       </div>

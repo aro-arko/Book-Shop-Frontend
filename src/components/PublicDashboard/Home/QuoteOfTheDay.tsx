@@ -2,6 +2,7 @@ import { useGetQuoteQuery } from "../../../redux/features/quote/quoteApi";
 import { Card, CardContent, CardHeader } from "../../ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "../../ui/avatar";
 import { Skeleton } from "../../ui/skeleton";
+import { QuoteIcon } from "lucide-react"; // or your preferred icon library
 
 const QuoteOfTheDay = () => {
   const { data: quoteData, isLoading, isError } = useGetQuoteQuery(undefined);
@@ -42,8 +43,13 @@ const QuoteOfTheDay = () => {
           Quote of the Day
         </h2>
       </div>
-      <Card className="w-full max-w-7xl mx-auto shadow-md border border-gray-100">
-        <CardHeader className="flex flex-col items-center space-y-2">
+      <Card className="w-full max-w-7xl mx-auto shadow-md border border-gray-100 relative">
+        {/* Quote icon inside card at top-left */}
+        <div className="absolute top-6 left-6 text-gray-300 rotate-180">
+          <QuoteIcon className="h-12 w-12" />
+        </div>
+
+        <CardHeader className="flex flex-col items-center space-y-2 pt-8">
           <Avatar className="h-20 w-20">
             <AvatarImage src={userImg} alt={name} className="object-cover" />
             <AvatarFallback className="text-4xl">
@@ -57,9 +63,9 @@ const QuoteOfTheDay = () => {
             <h3 className="text-xl font-bold">{name}</h3>
           </div>
         </CardHeader>
-        <CardContent className="">
+        <CardContent className="pb-8">
           <blockquote className="text-center">
-            <p className=" leading-relaxed">"{quote}"</p>
+            <p className="leading-relaxed">"{quote}"</p>
           </blockquote>
         </CardContent>
       </Card>
