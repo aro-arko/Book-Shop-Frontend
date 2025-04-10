@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   Settings,
   Key,
+  QuoteIcon,
 } from "lucide-react";
 
 import { NavMain } from "./nav-main";
@@ -58,6 +59,12 @@ const data = {
       title: "Orders",
       url: "/admin/orders",
       icon: ShoppingCart,
+      isActive: true,
+    },
+    {
+      title: "Quotes",
+      url: "/admin/quotes",
+      icon: QuoteIcon,
       isActive: true,
     },
     {

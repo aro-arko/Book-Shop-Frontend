@@ -82,38 +82,40 @@ const PlatformOverview = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 pt-16 pb-8 sm:px-6 lg:px-0">
-      <h2 className="text-3xl font-extrabold text-gray-900 mb-12 text-center">
-        Platform Overview
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {stats.map(
-          ({ title, count, icon: Icon, color, description }, index) => (
-            <Card
-              key={index}
-              className="bg-white p-4 rounded-2xl shadow-md border border-gray-200"
-            >
-              <CardHeader className="flex flex-col items-center text-center space-y-3">
-                <div
-                  className={`rounded-full p-4 bg-gray-100 shadow-inner ${color}`}
-                >
-                  <Icon className="w-10 h-10" />
-                </div>
-                <CardTitle className="text-2xl font-semibold text-gray-800">
-                  {title}
-                </CardTitle>
-                <span className="text-4xl font-bold text-gray-900">
-                  {count}
-                </span>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 text-sm text-center">
-                  {description}
-                </p>
-              </CardContent>
-            </Card>
-          )
-        )}
+    <section className="bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 pt-16 pb-8 sm:px-6 lg:px-0">
+        <h2 className="text-3xl font-extrabold text-gray-900 mb-12 text-center">
+          Platform Overview
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {stats.map(
+            ({ title, count, icon: Icon, color, description }, index) => (
+              <Card
+                key={index}
+                className="bg-white p-4 rounded-2xl shadow-md border border-gray-200"
+              >
+                <CardHeader className="flex flex-col items-center text-center space-y-3">
+                  <div
+                    className={`rounded-full p-4 bg-gray-100 shadow-inner ${color}`}
+                  >
+                    <Icon className="w-10 h-10" />
+                  </div>
+                  <CardTitle className="text-2xl font-semibold text-gray-800">
+                    {title}
+                  </CardTitle>
+                  <span className="text-4xl font-bold text-gray-900">
+                    {count}
+                  </span>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 text-sm text-center">
+                    {description}
+                  </p>
+                </CardContent>
+              </Card>
+            )
+          )}
+        </div>
       </div>
     </section>
   );

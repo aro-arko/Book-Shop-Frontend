@@ -8,6 +8,7 @@ import AllProducts from "../components/AdminDashboard/Product/AllProducts";
 import CreateProduct from "../components/AdminDashboard/Product/CreateProduct";
 import ProductDetails from "../components/AdminDashboard/Product/ProductDetails";
 import UpdateProduct from "../components/AdminDashboard/Product/UpdateProduct";
+import Quote from "../components/AdminDashboard/Quote/Quote";
 
 export const adminRoutes = [
   {
@@ -50,5 +51,9 @@ export const adminRoutes = [
   {
     path: "orders/:id",
     element: <OrderDetails />,
+  },
+  {
+    path: "quotes",
+    element: <Quote />,
   },
 ];
