@@ -8,6 +8,7 @@ import LoadingSpinner from "../Loading/LoadingSpinner";
 import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
 import CartSummary from "./CartSummary";
+import { Helmet } from "react-helmet";
 
 const Cart = () => {
   const { data, isLoading, refetch } = useGetCartQuery(undefined);
@@ -52,6 +53,10 @@ const Cart = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-0 py-10">
+      <Helmet>
+        <title>Cart</title>
+        <meta name="description" content="This is bookshop user cart page" />
+      </Helmet>
       <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Your Cart</h1>
       {cart.items.length === 0 ? (
         <p className="text-gray-600">Your cart is empty</p>

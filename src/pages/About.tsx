@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import bookReading from "../assets/images/bookIllustartion.jpeg";
 import { Button } from "../components/ui/button";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   return (
     <div className=" min-h-screen py-16">
+      <Helmet>
+        <title>About</title>
+        <meta name="description" content="This is bookshop about page" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 lg:px-0">
         {/* Header Section */}
         <div className="text-center mb-16">

@@ -36,7 +36,7 @@ const AddQuote = () => {
   };
 
   return (
-    <div className="w-fullmx-auto py-4 px-0">
+    <div className="w-fullmx-auto py-4 px-4">
       <Card className="w-full border border-gray-100 shadow-lg">
         <CardHeader className="">
           <CardTitle className="text-xl font-bold text-center">

@@ -17,6 +17,7 @@ import {
   SidebarMenuSubItem,
 } from "../ui/sidebar";
 import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
 
 export function NavMain({
   items,
@@ -34,9 +35,10 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>
-        <Link to="/admin">
-          <h2 className="text-2xl font-bold text-gray-900 pb-4">BookShop</h2>
+      <SidebarGroupLabel className="mb-4">
+        <Link to="/admin" className="text-2xl font-bold flex items-center">
+          <img src={logo} alt="Logo" className="h-6 w-6 mr-2" />
+          <div className="text-gray-900 font-semibold text-xl">BookShop</div>
         </Link>
       </SidebarGroupLabel>
       <SidebarMenu>

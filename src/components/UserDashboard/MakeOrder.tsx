@@ -6,6 +6,7 @@ import {
 } from "../../redux/features/user/userApi";
 import { toast } from "sonner";
 import OrderItems from "./OrderItems";
+import { Helmet } from "react-helmet";
 
 const MakeOrder = () => {
   const { data: fetchedUserData, refetch: refetchUser } =
@@ -60,6 +61,10 @@ const MakeOrder = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <Helmet>
+        <title>Checkout</title>
+        <meta name="description" content="This is bookshop checkout page" />
+      </Helmet>
       <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
         <h1 className="text-3xl font-semibold text-gray-800 text-center mb-6">
           Make Order

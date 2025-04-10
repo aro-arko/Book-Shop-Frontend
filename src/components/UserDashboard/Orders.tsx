@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Helmet } from "react-helmet";
 import { useOwnOrdersQuery } from "../../redux/features/order/orderApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import OrderedProductDetails from "./OrderedProductDetails";
@@ -38,6 +39,10 @@ const Orders = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4  lg:px-0 py-10">
+      <Helmet>
+        <title>Orders</title>
+        <meta name="description" content="This is user orders page" />
+      </Helmet>
       <div className="flex items-center justify-center mb-8">
         <h2 className="text-3xl font-extrabold text-gray-900">My Orders</h2>
       </div>

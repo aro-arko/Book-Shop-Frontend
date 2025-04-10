@@ -33,14 +33,16 @@ const RecentOrders = () => {
     .slice(0, 3);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold text-gray-800">Orders</h2>
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="flex justify-between items-center mb-4 sm:mb-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+          Orders
+        </h2>
         <Link
           to="/admin/orders"
-          className="text-blue-600 hover:text-blue-800 flex items-center"
+          className="text-blue-600 hover:text-blue-800 flex items-center text-sm"
         >
-          View All <ArrowRight className="ml-1 h-4 w-4 text-blue-600" />
+          View All <ArrowRight className="ml-1 h-4 w-4" />
         </Link>
       </div>
 
@@ -51,10 +53,10 @@ const RecentOrders = () => {
           recentOrders.map((order: Order) => (
             <div
               key={order._id}
-              className="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden hover:bg-gray-100 transition-colors"
+              className="bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
             >
               <Link to={`/admin/orders/${order._id}`} className="block p-4">
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {/* Order ID */}
                   <div className="flex flex-col">
                     <div className="flex items-center mb-1">
@@ -63,7 +65,7 @@ const RecentOrders = () => {
                         Order ID
                       </span>
                     </div>
-                    <p className="text-sm font-semibold text-gray-800 truncate ml-6">
+                    <p className="text-sm font-semibold text-gray-800 ml-6 truncate">
                       {order._id}
                     </p>
                   </div>

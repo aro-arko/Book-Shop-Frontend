@@ -5,6 +5,7 @@ import { useAddToCartMutation } from "../../redux/features/cart/cartApi";
 import LoadingSpinner from "../Loading/LoadingSpinner";
 import { RootState } from "../../redux/store";
 import { toast } from "sonner";
+import { Helmet } from "react-helmet";
 
 const BookDetails = () => {
   const { productId } = useParams();
@@ -69,6 +70,10 @@ const BookDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <Helmet>
+        <title>Book Details</title>
+        <meta name="description" content="This is bookshop book details page" />
+      </Helmet>
       <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
         <div className="flex flex-col md:flex-row items-center md:items-start">
           <img

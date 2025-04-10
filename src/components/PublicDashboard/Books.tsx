@@ -6,6 +6,7 @@ import { FaFilter, FaSearch } from "react-icons/fa";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ResetFilters from "./ResetFilters";
 import { Button } from "../ui/button";
+import { Helmet } from "react-helmet";
 
 const Books = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -121,6 +122,10 @@ const Books = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      <Helmet>
+        <title>Books</title>
+        <meta name="description" content="This is bookshop books page" />
+      </Helmet>
       {/* Header */}
       <div className="mb-6 text-center">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">

@@ -36,31 +36,33 @@ const QuoteOfToday = () => {
   const { userImg, name, quote } = quoteData.data;
 
   return (
-    <Card className="w-full shadow-md border border-gray-100">
-      <CardHeader className="flex flex-col items-center space-y-2">
-        <div className="text-center">
-          <h2 className="text-xl font-bold">Quote of the Day</h2>
-          <p className="text-sm text-gray-500">Get inspired</p>
-        </div>
-        <Avatar className="h-20 w-20">
-          <AvatarImage src={userImg} alt={name} className="object-cover" />
-          <AvatarFallback className="text-4xl">
-            {name
-              .split(" ")
-              .map((n: string) => n[0])
-              .join("")}
-          </AvatarFallback>
-        </Avatar>
-        <div className="text-center">
-          <h3 className="text-xl font-bold">{name}</h3>
-        </div>
-      </CardHeader>
-      <CardContent className="">
-        <blockquote className="text-center">
-          <p className=" leading-relaxed">"{quote}"</p>
-        </blockquote>
-      </CardContent>
-    </Card>
+    <div className="px-4">
+      <Card className="w-full shadow-md border border-gray-100">
+        <CardHeader className="flex flex-col items-center space-y-2">
+          <div className="text-center">
+            <h2 className="text-xl font-bold">Quote of the Day</h2>
+            <p className="text-sm text-gray-500">Get inspired</p>
+          </div>
+          <Avatar className="h-20 w-20">
+            <AvatarImage src={userImg} alt={name} className="object-cover" />
+            <AvatarFallback className="text-4xl">
+              {name
+                .split(" ")
+                .map((n: string) => n[0])
+                .join("")}
+            </AvatarFallback>
+          </Avatar>
+          <div className="text-center">
+            <h3 className="text-xl font-bold">{name}</h3>
+          </div>
+        </CardHeader>
+        <CardContent className="">
+          <blockquote className="text-center">
+            <p className=" leading-relaxed">"{quote}"</p>
+          </blockquote>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

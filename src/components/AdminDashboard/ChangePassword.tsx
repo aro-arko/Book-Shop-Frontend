@@ -38,7 +38,7 @@ const ChangePassword = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex items-center justify-center py-4 px-0 lg:p-0">
+      <div className="flex items-center justify-center py-4 px-4 lg:p-0">
         <div className="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
           <div className="p-6 md:p-8">
             <div className="flex justify-center mb-6">

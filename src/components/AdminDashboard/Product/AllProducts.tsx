@@ -116,7 +116,7 @@ const AllProducts = () => {
           Manage your products efficiently
         </p>
       </div>
-      <div className=" mx-auto bg-white shadow-lg rounded-2xl px-8 py-16 border border-gray-100">
+      <div className=" mx-auto md:bg-white md:shadow-lg rounded-2xl px-0 md:px-8 py-4 md:py-16 md:border md:border-gray-100">
         <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
           {/* Mobile Layout - Filter and Search side by side */}
           <div className="md:hidden flex justify-between items-center w-full gap-3">

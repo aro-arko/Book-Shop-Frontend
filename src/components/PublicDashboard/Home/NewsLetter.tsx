@@ -16,7 +16,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <section className="py-16 sm:py-8 px-4 sm:px-6 lg:px-0">
+    <section className="pt-16 pb-8 px-4 lg:px-0">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl shadow-md p-10 sm:p-12 text-center border border-gray-200">
           {/* Icon */}

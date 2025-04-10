@@ -42,11 +42,11 @@ const UpdateProduct = () => {
       setFormData({
         title: product.title,
         author: product.author,
-        price: product.price.toString(), // Convert price to string for input field
+        price: product.price.toString(),
         category: product.category,
         description: product.description,
         image: product.image,
-        quantity: product.quantity.toString(), // Convert quantity to string for input field
+        quantity: product.quantity.toString(),
         inStock: product.inStock,
       });
     }
@@ -69,8 +69,8 @@ const UpdateProduct = () => {
     e.preventDefault();
     const updatedFormData = {
       ...formData,
-      price: Number(formData.price), // Convert price to number
-      quantity: Number(formData.quantity), // Convert quantity to number
+      price: Number(formData.price),
+      quantity: Number(formData.quantity),
     };
     Swal.fire({
       title: "Are you sure?",
@@ -102,7 +102,7 @@ const UpdateProduct = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <div className="max-w-7xl mx-auto bg-white shadow-xl rounded-2xl px-4 md:px-8 py-8">
         <div className="flex items-center mb-6">
           <Link
             to={`/admin/products/${productId}`}

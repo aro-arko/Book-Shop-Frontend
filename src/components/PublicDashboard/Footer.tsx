@@ -21,7 +21,7 @@ const Footer = () => {
       {/* Decorative Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-900/10 to-transparent transform rotate-45" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 lg:px-0 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">

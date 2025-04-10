@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { toast, Toaster } from "sonner";
 import { useRegisterMutation } from "../redux/features/auth/authApi";
 import registerImage from "../assets/images/loginIllustration.png";
+import { toast } from "sonner";
+import { Helmet } from "react-helmet";
+import { FiUser, FiMail, FiLock, FiPhone } from "react-icons/fi";
+import { Button } from "../components/ui/button";
 
 const Register = () => {
   const [register] = useRegisterMutation();
@@ -16,10 +19,7 @@ const Register = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,6 +28,7 @@ const Register = () => {
       toast.error("Password must be at least 8 characters long");
       return;
     }
+
     const toastId = toast.loading("Registering...");
     try {
       await register(formData).unwrap();
@@ -42,79 +43,129 @@ const Register = () => {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen flex items-center justify-center">
-      <Toaster />
-      <div className="hero-content flex-col lg:flex-row shadow-2xl rounded-lg overflow-hidden p-10">
-        <div className="hidden lg:block lg:w-1/3">
-          <img
-            src={registerImage}
-            alt="Register"
-            className="w-full h-auto object-cover"
-          />
-        </div>
-        <div className="card bg-base-100 w-full max-w-lg lg:w-2/3 p-8">
-          <div className="card-body">
-            <h2 className="text-2xl font-bold text-center mb-6">Register</h2>
-            <form onSubmit={handleSubmit}>
-              <fieldset className="fieldset space-y-4">
-                <div>
-                  <label className="fieldset-label block mb-2">Name</label>
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <Helmet>
+        <title>Register</title>
+        <meta name="description" content="Create a new account" />
+      </Helmet>
+
+      <div className="w-full max-w-7xl rounded-xl shadow-lg border border-gray-100 h-[700px] overflow-hidden">
+        <div className="flex flex-col lg:flex-row">
+          <div className="hidden lg:block lg:w-1/2 bg-blue-50">
+            <img
+              src={registerImage}
+              alt="Register illustration"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="w-full lg:w-1/2 p-6 sm:p-8">
+            <div className="text-center mb-6">
+              <h1 className="text-2xl font-bold text-gray-800">
+                Create Account
+              </h1>
+              <p className="text-gray-500 text-sm mt-1">
+                Join us and explore the features
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Name
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiUser className="text-gray-400" />
+                  </div>
                   <input
                     type="text"
-                    className="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    className="block text-sm w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="John Doe"
                   />
                 </div>
-                <div>
-                  <label className="fieldset-label block mb-2">Phone</label>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiPhone className="text-gray-400" />
+                  </div>
                   <input
                     type="text"
-                    className="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
                     required
+                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 text-sm rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="+6001XXXXXXXXX"
                   />
                 </div>
-                <div>
-                  <label className="fieldset-label block mb-2">Email</label>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiMail className="text-gray-400" />
+                  </div>
                   <input
                     type="email"
-                    className="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    className="block text-sm w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="your@email.com"
                   />
                 </div>
-                <div>
-                  <label className="fieldset-label block mb-2">Password</label>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Password
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiLock className="text-gray-400" />
+                  </div>
                   <input
                     type="password"
-                    className="input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                     required
+                    className="block text-sm w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="••••••••"
                   />
                 </div>
-                <button type="submit" className="btn btn-neutral w-full mt-4">
-                  Register
-                </button>
-              </fieldset>
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full cursor-pointer flex justify-center items-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white"
+              >
+                Create Account
+              </Button>
             </form>
-            <div className="text-center mt-4">
+
+            <div className="mt-4 text-center text-sm text-gray-600">
               <p>
                 Already have an account?{" "}
-                <Link to="/login" className="text-blue-500 hover:underline">
-                  Login
+                <Link
+                  to="/login"
+                  className="font-semibold text-blue-600 hover:text-blue-500"
+                >
+                  Sign in
                 </Link>
               </p>
             </div>

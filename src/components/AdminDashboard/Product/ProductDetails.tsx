@@ -63,7 +63,7 @@ const ProductDetails = () => {
           View and manage your product details from here.
         </p>
       </div>
-      <div className="mx-auto bg-white shadow-xl rounded-2xl p-8">
+      <div className="mx-auto bg-white shadow-xl rounded-2xl p-4 md:p-8">
         <div className="flex flex-col md:flex-row items-center md:items-start">
           <img
             src={product.image}

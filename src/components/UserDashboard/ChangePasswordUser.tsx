@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useUpdatePasswordMutation } from "../../redux/features/auth/authApi";
+import { Helmet } from "react-helmet";
 
 const ChangePasswordUser = () => {
   const [updatePassword, { isLoading, error }] = useUpdatePasswordMutation();
@@ -22,14 +23,19 @@ const ChangePasswordUser = () => {
       await updatePassword({ oldPassword, newPassword }).unwrap();
       toast.success("Password updated successfully");
       navigate("/user/profile");
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
       console.error("Failed to update password:", err);
-      toast.error("Failed to update password");
+      toast.error(err?.data?.message || "Failed to update password");
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <Helmet>
+        <title>Change Password</title>
+        <meta name="description" content="This is user change password page" />
+      </Helmet>
       <div className="max-w-md mx-auto bg-white shadow-xl rounded-2xl p-8">
         <h1 className="text-3xl font-semibold text-gray-800 text-center mb-6">
           Change Password

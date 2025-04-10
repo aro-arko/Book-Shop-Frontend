@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useGetUserQuery } from "../../redux/features/user/userApi";
 import profileImg from "../../assets/images/admin.webp";
+import { Helmet } from "react-helmet";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -14,6 +15,10 @@ const UserProfile = () => {
 
   return (
     <div className="min-h-screen max-w-7xl py-8 px-4 lg:px-0 mx-auto">
+      <Helmet>
+        <title>Profile</title>
+        <meta name="description" content="This is user profile page" />
+      </Helmet>
       <div className="mx-auto">
         {/* Profile Header */}
         <div className="text-center mb-8">

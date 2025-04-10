@@ -23,7 +23,7 @@ const RecentProducts = () => {
   const products = response.data || [];
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold text-gray-800">Recent Products</h2>
         <Link
@@ -41,14 +41,14 @@ const RecentProducts = () => {
           products.map((product: TProduct) => (
             <div
               key={product._id}
-              className=" rounded-lg border border-gray-200 overflow-hidden hover:bg-gray-100 transition-colors"
+              className="rounded-lg border border-gray-200 overflow-hidden hover:bg-gray-100 transition-colors"
             >
               <Link to={`/admin/products/${product._id}`} className="block p-4">
-                <div className="grid grid-cols-4 gap-4">
-                  {/* Title - Primary information (indigo) */}
-                  <div className="flex items-center">
-                    <BookOpen className="text-indigo-500 mr-3 flex-shrink-0" />
-                    <div className="overflow-hidden">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {/* Title */}
+                  <div className="flex items-start sm:items-center">
+                    <BookOpen className="text-indigo-500 mr-3 flex-shrink-0 mt-1 sm:mt-0" />
+                    <div className="overflow-hidden min-w-0">
                       <p className="text-sm font-medium text-gray-500">Title</p>
                       <p className="text-sm font-semibold text-gray-800 truncate">
                         {product.title}
@@ -56,10 +56,10 @@ const RecentProducts = () => {
                     </div>
                   </div>
 
-                  {/* Author - Secondary information (sky blue) */}
-                  <div className="flex items-center">
-                    <User className="text-sky-500 mr-3 flex-shrink-0" />
-                    <div className="overflow-hidden">
+                  {/* Author */}
+                  <div className="flex items-start sm:items-center">
+                    <User className="text-sky-500 mr-3 flex-shrink-0 mt-1 sm:mt-0" />
+                    <div className="overflow-hidden min-w-0">
                       <p className="text-sm font-medium text-gray-500">
                         Author
                       </p>
@@ -69,10 +69,10 @@ const RecentProducts = () => {
                     </div>
                   </div>
 
-                  {/* Category - Tertiary information (amber) */}
-                  <div className="flex items-center">
-                    <Hash className="text-amber-500 mr-3 flex-shrink-0" />
-                    <div className="overflow-hidden">
+                  {/* Category */}
+                  <div className="flex items-start sm:items-center">
+                    <Hash className="text-amber-500 mr-3 flex-shrink-0 mt-1 sm:mt-0" />
+                    <div className="overflow-hidden min-w-0">
                       <p className="text-sm font-medium text-gray-500">
                         Category
                       </p>
@@ -82,10 +82,10 @@ const RecentProducts = () => {
                     </div>
                   </div>
 
-                  {/* Price - Financial information (emerald) */}
-                  <div className="flex items-center">
-                    <DollarSign className="text-emerald-500 mr-3 flex-shrink-0" />
-                    <div className="overflow-hidden">
+                  {/* Price */}
+                  <div className="flex items-start sm:items-center">
+                    <DollarSign className="text-emerald-500 mr-3 flex-shrink-0 mt-1 sm:mt-0" />
+                    <div className="overflow-hidden min-w-0">
                       <p className="text-sm font-medium text-gray-500">Price</p>
                       <p className="text-sm font-semibold text-gray-800">
                         ${product.price.toFixed(2)}

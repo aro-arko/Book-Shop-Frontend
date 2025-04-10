@@ -82,8 +82,8 @@ const PlatformOverview = () => {
   }
 
   return (
-    <section className="bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 pt-16 pb-8 sm:px-6 lg:px-0">
+    <section className=" bg-gray-50 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
         <h2 className="text-3xl font-extrabold text-gray-900 mb-12 text-center">
           Platform Overview
         </h2>

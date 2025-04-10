@@ -111,7 +111,7 @@ const Navbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[700px] p-6 grid grid-cols-2 gap-6 shadow-xl border border-gray-100 rounded-lg">
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">
+                  <h3 className=" text-sm font-semibold text-gray-900 mb-2">
                     Categories
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -126,7 +126,7 @@ const Navbar = () => {
                         className={`text-sm px-4 py-1 rounded-full transition-colors duration-200 ${
                           selectedCategory === cat
                             ? "bg-blue-100 text-blue-600 font-semibold "
-                            : "bg-blue-50 text-blue-600 font-medium hover:bg-blue-100 hover:text-blue-800"
+                            : "bg-blue-50 text-blue-600 font-medium hover:bg-blue-100 hover:text-blue-600"
                         }`}
                       >
                         {cat}
@@ -154,12 +154,15 @@ const Navbar = () => {
                       onCheckedChange={(val) => setInStock(!!val)}
                       className="border-gray-300"
                     />
-                    <label htmlFor="inStock" className="text-sm text-gray-700">
+                    <label
+                      htmlFor="inStock"
+                      className="text-sm font-semibold text-gray-900"
+                    >
                       In Stock Only
                     </label>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-gray-900 mb-2">
                       Price Range
                     </label>
                     <Slider
@@ -312,14 +315,16 @@ const Navbar = () => {
             </NavLink>
 
             <div className="px-3 py-2">
-              <button
-                className="w-full text-left flex items-center justify-between"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span className="text-base font-medium text-gray-700">
-                  Books
-                </span>
-              </button>
+              <NavLink to="/books">
+                <button
+                  className="w-full text-left flex items-center justify-between"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span className="text-base font-medium text-gray-700">
+                    Books
+                  </span>
+                </button>
+              </NavLink>
             </div>
 
             <NavLink

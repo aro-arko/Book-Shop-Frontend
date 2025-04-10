@@ -40,8 +40,8 @@ const AllOrders = () => {
       <div className="mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center mb-8">
-          <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
-            <p className=" font-semibold text-gray-700">
+          <div className="bg-white mx-auto p-3 rounded-lg shadow-sm border border-gray-200">
+            <p className="font-semibold text-gray-700">
               Total Revenue:{" "}
               <span className="text-blue-600">${totalRevenue.toFixed(2)}</span>
             </p>

@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { Button } from "../ui/button";
+import { Helmet } from "react-helmet";
 
 const FAQ = () => {
   const faqs = [
@@ -38,6 +39,10 @@ const FAQ = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 lg:px-0">
+      <Helmet>
+        <title>FAQ</title>
+        <meta name="description" content="This is bookshop faq page" />
+      </Helmet>
       <div className="text-center mb-12">
         <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-4">
           Frequently Asked Questions

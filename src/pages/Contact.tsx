@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import {
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
   FaCheckCircle,
 } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -39,61 +40,27 @@ const Contact = () => {
     }
   };
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
-  const staggerContainer = {
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const successMessageVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
-  };
-
   return (
     <div className="min-h-screen py-16">
+      <Helmet>
+        <title>Contact</title>
+        <meta name="description" content="This is bookshop contact page" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 lg:px-0">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-          className="text-center mb-12"
-        >
-          <motion.h1
-            variants={fadeInUp}
-            className="text-3xl font-extrabold text-gray-900 mb-4"
-          >
+        <div className="text-center mb-12">
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-4">
             Contact Us
-          </motion.h1>
-          <motion.p
-            variants={fadeInUp}
-            className=" text-gray-600 max-w-2xl mx-auto"
-          >
+          </h1>
+          <p className=" text-gray-600 max-w-2xl mx-auto">
             We'd love to hear from you! Reach out to us for any questions,
             feedback, or inquiries.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Contact Content */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <motion.div
-            variants={fadeInUp}
-            className="bg-white p-8 rounded-xl shadow-lg"
-          >
+          <div className="bg-white p-8 rounded-xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
               Send Us a Message
             </h2>
@@ -157,26 +124,20 @@ const Contact = () => {
               {/* Success Message */}
               <AnimatePresence>
                 {successMessage && (
-                  <motion.div
-                    variants={successMessageVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded-lg flex items-center space-x-3"
-                  >
+                  <div className="mt-4 p-4 bg-green-50 border-l-4 border-green-500 rounded-lg flex items-center space-x-3">
                     <FaCheckCircle className="text-2xl text-green-500" />
                     <p className="text-green-700">{successMessage}</p>
-                  </motion.div>
+                  </div>
                 )}
               </AnimatePresence>
               {errorMessage && (
                 <p className="text-red-500 mt-4">{errorMessage}</p>
               )}
             </form>
-          </motion.div>
+          </div>
 
           {/* Contact Information */}
-          <motion.div variants={fadeInUp} className="space-y-8">
+          <div className="space-y-8">
             {/* Contact Details */}
             <div className="bg-white p-8 rounded-xl shadow-lg">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">
@@ -238,8 +199,8 @@ const Contact = () => {
                 />
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   );
