@@ -15,6 +15,7 @@ import BookDetails from "../components/PublicDashboard/BookDetails";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
+import FAQ from "../components/PublicDashboard/FAQ";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
+        path: "faq",
+        element: <FAQ />,
+      },
+      {
         path: "login",
         element: <Login />,
       },
@@ -71,7 +76,7 @@ const router = createBrowserRouter([
         <AdminDashboard />
       </ProtectedRoute>
     ),
-    children: adminRoutes, 
+    children: adminRoutes,
   },
   {
     path: "/user",

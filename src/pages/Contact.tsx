@@ -59,8 +59,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-16">
+      <div className="max-w-7xl mx-auto px-4 lg:px-0">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -69,13 +69,13 @@ const Contact = () => {
         >
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold text-gray-900 mb-4"
+            className="text-3xl font-extrabold text-gray-900 mb-4"
           >
             Contact Us
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className=" text-gray-600 max-w-2xl mx-auto"
           >
             We'd love to hear from you! Reach out to us for any questions,
             feedback, or inquiries.
@@ -145,7 +145,7 @@ const Contact = () => {
                   placeholder="Your message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 lg:h-40"
                 />
               </div>
               <button

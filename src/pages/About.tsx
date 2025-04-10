@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import bookReading from "../assets/images/bookIllustartion.jpeg";
+import { Button } from "../components/ui/button";
 
 const About = () => {
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className=" min-h-screen py-16">
+      <div className="max-w-7xl mx-auto px-4 lg:px-0">
         {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-4xl font-bold text-gray-800">
@@ -17,7 +19,7 @@ const About = () => {
         {/* Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Introduction */}
-          <div className="bg-white border border-gray-100 p-8 rounded-xl shadow-xl hover:shadow-3xl transition-shadow duration-300">
+          <div className="bg-white border border-gray-100 p-8 rounded-xl shadow-md hover:shadow-3xl transition-shadow duration-300">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Who We Are
             </h2>
@@ -34,7 +36,7 @@ const About = () => {
           </div>
 
           {/* Illustration */}
-          <div className=" p-4 rounded-xl shadow-xl flex items-center justify-center border border-gray-100">
+          <div className=" p-4 rounded-xl shadow-md flex items-center justify-center border border-gray-100">
             <img
               src={bookReading}
               alt="Books Illustration"
@@ -44,7 +46,7 @@ const About = () => {
         </div>
 
         {/* Mission Statement */}
-        <div className="mt-12 border border-gray-100 p-8 rounded-xl shadow-xl text-gray-800">
+        <div className="mt-12 border border-gray-100 p-8 rounded-xl shadow-md text-gray-800">
           <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
           <p className="text-gray-800 leading-relaxed">
             At <span className="font-bold">BookShop</span>, we believe in the
@@ -80,7 +82,7 @@ const About = () => {
           ].map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-md transition-shadow duration-300 border border-gray-100"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800">
@@ -92,7 +94,7 @@ const About = () => {
         </div>
 
         {/* Customer Commitment */}
-        <div className="mt-12 bg-white p-8 rounded-xl shadow-xl border border-gray-100">
+        <div className="mt-12 bg-white p-8 rounded-xl shadow-md border border-gray-100">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">
             Our Commitment
           </h2>
@@ -112,12 +114,10 @@ const About = () => {
           <p className="text-gray-600 mb-6">
             Explore our collection and find your next favorite book today.
           </p>
-          <a
-            href="/books"
-            className="inline-block bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:shadow-lg transition-shadow duration-300"
-          >
-            Browse Books
-          </a>
+
+          <Link to="/books">
+            <Button className="bg-primary font-semibold">Browse Books</Button>
+          </Link>
         </div>
       </div>
     </div>
