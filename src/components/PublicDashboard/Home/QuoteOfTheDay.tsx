@@ -9,28 +9,32 @@ const QuoteOfTheDay = () => {
 
   if (isLoading) {
     return (
-      <Card className="w-full">
-        <CardHeader className="flex flex-col items-center space-y-4 p-8">
-          <Skeleton className="h-auto w-32 rounded-full" />
-          <div className="space-y-3 w-full text-center">
-            <Skeleton className="h-8 w-3/4 mx-auto" />
-            <Skeleton className="h-6 w-1/2 mx-auto" />
-          </div>
-        </CardHeader>
-        <CardContent className="p-8 pt-0">
-          <Skeleton className="h-24 w-full" />
-        </CardContent>
-      </Card>
+      <div className="max-w-7xl mx-auto">
+        <Card className="w-full border-none">
+          <CardHeader className="flex flex-col items-center space-y-4 p-8">
+            <Skeleton className="h-auto w-32 rounded-full" />
+            <div className="space-y-3 w-full text-center">
+              <Skeleton className="h-8 w-3/4 mx-auto" />
+              <Skeleton className="h-6 w-1/2 mx-auto" />
+            </div>
+          </CardHeader>
+          <CardContent className="p-8 pt-0">
+            <Skeleton className="h-24 w-full" />
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
   if (isError || !quoteData?.data) {
     return (
-      <Card className="w-full border-destructive">
-        <CardContent className="p-8 text-center text-destructive text-xl">
-          Failed to load quote
-        </CardContent>
-      </Card>
+      <div className="max-w-7xl mx-auto">
+        <Card className="w-full border-destructive">
+          <CardContent className="p-8 text-center text-destructive text-xl">
+            Failed to load quote
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
